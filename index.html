@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mente Universitária | Seu espaço de bem-estar</title>
 <meta name="description" content="Protótipo acadêmico fictício de uma plataforma de bem-estar universitário: check-in emocional, diário, tarefas, Pomodoro e relaxamento.">
-<meta name="theme-color" content="#1b2540">
+<meta name="theme-color" id="metaTema" content="#1b2540">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237660b3'/%3E%3Cpath d='M16 25c-5-3-8-6.500-8-11 4.500 0 7.500 1.800 8 5.500.5-5 3.500-8 8-9 0 7-3 12-8 14.500z' fill='%23fff'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js')</script>
 <style>
@@ -41,7 +41,9 @@ p{margin:0;color:var(--muted)}
 .sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:26px 16px 20px;color:#cdd3ea;
   background:radial-gradient(420px 260px at 0 0,rgba(141,116,201,.28),transparent 70%),linear-gradient(180deg,var(--nv-900),var(--nv-950))}
 .brand{display:flex;align-items:center;gap:12px;padding:0 10px 22px}
-.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,var(--lil-400),var(--lil-600));color:#fff;box-shadow:0 8px 20px -6px rgba(141,116,201,.7)}
+.mark{position:relative;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,var(--lil-400),var(--lil-600));color:#fff;box-shadow:0 8px 20px -6px rgba(141,116,201,.7)}
+.crown-b{position:absolute;top:-11px;right:-9px;width:22px;height:22px;display:grid;place-items:center;opacity:0;transform:scale(.4) rotate(-24deg);transition:opacity .5s,transform .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+.crown-b .ic{width:20px;height:20px;fill:#e8d3a0;stroke:#9c7a36;stroke-width:1.2}
 .brand b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:#fff;letter-spacing:-.01em;line-height:1.1}
 .brand small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#98a2c6}
 .side-nav{display:flex;flex-direction:column;gap:2px;overflow:auto;flex:1;padding-right:2px}
@@ -343,6 +345,15 @@ dialog[open]{animation:enter .4s var(--ease)}
 dialog h3{font-family:var(--serif);font-weight:500;font-size:28px;margin:14px 0 10px}
 dialog .row{margin-top:22px;justify-content:flex-end}
 
+/* ---------- transição Gratuito ↔ Premium ---------- */
+#fx{position:fixed;inset:0;z-index:300;pointer-events:none;overflow:hidden;visibility:hidden}
+#fx.on{visibility:visible}
+.fx-disc{position:absolute;border-radius:50%;transform:scale(0);will-change:transform;
+  background:radial-gradient(circle closest-side,#241c63 0%,#121743 42%,#0a1030 88%,#e8d3a0 96.5%,rgba(232,211,160,0) 100%)}
+.fx-crown{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;display:flex;flex-direction:column;align-items:center;gap:10px;color:#e8d3a0}
+.fx-crown svg{width:60px;height:60px;fill:rgba(232,211,160,.16);stroke:#e8d3a0;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 18px rgba(232,211,160,.5))}
+.fx-label{font-family:var(--serif);font-size:15px;letter-spacing:.32em;text-transform:uppercase;padding-left:.32em}
+
 /* ---------- responsive ---------- */
 @media(max-width:1060px){
   .hero{grid-template-columns:1fr;gap:34px}
@@ -395,6 +406,73 @@ dialog .row{margin-top:22px;justify-content:flex-end}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .js .reveal:not(.in){opacity:1;transform:none}
 }
+
+/* ===== Tema Premium (azul-marinho profundo, roxo, dourado-champagne) ===== */
+html[data-tema=premium]{color-scheme:dark;
+  --lil-50:#171e4d;--lil-100:#1f2759;--lil-200:#cdbfff;--lil-300:#a994f5;--lil-400:#9b83ee;--lil-500:#8b6fe6;--lil-600:#7a5ae0;--lil-700:#d6c9ff;
+  --sg-50:#2a2748;--sg-100:#34304f;--sg-200:#ecd9ac;--sg-300:#e2c98f;--sg-500:#cdb27a;--sg-600:#d6b872;--sg-700:#f0dfb4;
+  --nv-950:#060920;--nv-900:#0d1236;--nv-800:#1a2152;--nv-700:#d6d0ee;--nv-500:#8f99c8;
+  --paper:#0a1030;--card:#141b45;--line:rgba(226,200,150,.16);--ink:#f2ecdd;--muted:#a8b0d4;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 14px 34px -14px rgba(0,0,0,.6);
+  --shadow-lg:0 2px 4px rgba(0,0,0,.3),0 28px 60px -22px rgba(0,0,0,.75)}
+html[data-tema=premium] body{background:
+  radial-gradient(900px 520px at 88% -8%,rgba(122,90,240,.28),transparent 62%),
+  radial-gradient(760px 520px at -8% 38%,rgba(214,184,120,.10),transparent 60%),var(--paper)}
+html[data-tema=premium] .eyebrow{color:#e2c98f}
+html[data-tema=premium] .eyebrow::before{background:#d6b872}
+html[data-tema=premium] .hero h1 em{background:linear-gradient(transparent 64%,rgba(214,184,120,.4) 64% 92%,transparent 92%)}
+/* menu */
+html[data-tema=premium] .sidebar{background:radial-gradient(420px 260px at 0 0,rgba(122,90,240,.35),transparent 70%),radial-gradient(300px 300px at 100% 100%,rgba(214,184,120,.12),transparent 70%),linear-gradient(180deg,#0b1034,#060920);box-shadow:1px 0 0 rgba(226,200,150,.22)}
+html[data-tema=premium] .mark{background:linear-gradient(140deg,#7e5ff0,#4b36a8);box-shadow:0 0 0 1.5px rgba(226,200,150,.7),0 8px 20px -6px rgba(122,90,240,.7)}
+html[data-tema=premium] .nav-a.on{background:rgba(214,184,120,.14)}
+html[data-tema=premium] .nav-a.on::before{background:#e2c98f}
+html[data-tema=premium] .side-plan{border-color:rgba(226,200,150,.22)}
+html[data-tema=premium] .side-plan .pill-p{background:rgba(214,184,120,.18)}
+html[data-tema=premium] .side-plan a{background:linear-gradient(135deg,#f1e2b8,#d4b46c);color:#14193a}
+html[data-tema=premium] .topbar{background:rgba(10,16,48,.86)}
+html[data-tema=premium] .tabbar{background:rgba(12,18,52,.93)}
+/* botões */
+html[data-tema=premium] .btn{background:linear-gradient(135deg,#f1e2b8,#d4b46c);color:#18193f;box-shadow:0 10px 24px -12px rgba(214,184,120,.6)}
+html[data-tema=premium] .btn:hover{background:linear-gradient(135deg,#f6ebc8,#dcbd78);box-shadow:0 16px 28px -14px rgba(214,184,120,.7)}
+html[data-tema=premium] .btn.lil{background:linear-gradient(135deg,#7e5ff0,#5a3fd0);color:#fff;box-shadow:0 10px 24px -12px rgba(122,90,240,.9)}
+html[data-tema=premium] .btn.lil:hover{background:linear-gradient(135deg,#9072f6,#6a4de0)}
+html[data-tema=premium] .btn.sage{background:linear-gradient(135deg,#e2c98f,#c9a860);color:#18193f}
+html[data-tema=premium] .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(226,200,150,.3)}
+html[data-tema=premium] .btn.ghost:hover{background:var(--lil-50);box-shadow:inset 0 0 0 1.5px #d6b872}
+html[data-tema=premium] .icon-btn:hover{background:rgba(255,120,120,.15);color:#ff9a8f}
+/* campos e superfícies */
+html[data-tema=premium] input[type=text],html[data-tema=premium] textarea,html[data-tema=premium] select{background:rgba(255,255,255,.05)}
+html[data-tema=premium] .choice,html[data-tema=premium] .entry,html[data-tema=premium] .acao{background:rgba(255,255,255,.04)}
+html[data-tema=premium] .chk{background:transparent}
+html[data-tema=premium] .chk:checked::after{border-color:#14193a}
+html[data-tema=premium] .m-task.done .ck{color:#14193a}
+html[data-tema=premium] .m-d{color:#18193f}
+html[data-tema=premium] .filters button[aria-selected=true],html[data-tema=premium] .modes button[aria-selected=true]{background:#262e68}
+html[data-tema=premium] .aviso{color:#c9cdea;border-color:rgba(226,200,150,.22)}
+html[data-tema=premium] .empty{border-color:rgba(226,200,150,.25)}
+html[data-tema=premium] .wb{background:#3a3f85}
+html[data-tema=premium] .wb.empty{background:transparent}
+html[data-tema=premium] .wb.today{background:linear-gradient(#b9a4f7,#7a5ae0)}
+html[data-tema=premium] .tarefa,html[data-tema=premium] .cmp th,html[data-tema=premium] .cmp td{border-bottom-color:var(--line)}
+html[data-tema=premium] .cmp th:first-child,html[data-tema=premium] .cmp td:first-child,
+html[data-tema=premium] .plan li,html[data-tema=premium] .result .quote,html[data-tema=premium] .prep label,
+html[data-tema=premium] .mini-entry,html[data-tema=premium] .entry p,html[data-tema=premium] .sugestao p{color:#d6daf0}
+html[data-tema=premium] .plan.pro li{color:#dfe3f3}
+html[data-tema=premium] .cmp .n{color:#5d6694}
+html[data-tema=premium] .msg{color:#ff9a8f}
+html[data-tema=premium] .cat.Prova{background:rgba(255,120,120,.15);color:#ffb0a8}
+html[data-tema=premium] .cat.Pessoal{background:rgba(120,150,255,.16);color:#aebfff}
+html[data-tema=premium] .bento .card.w4{background:linear-gradient(135deg,#1f2759,#241f5c 55%,#2d2a4e)}
+html[data-tema=premium] .bento .card.w4 .mini-faces span{background:rgba(255,255,255,.08)}
+html[data-tema=premium] .breath{background:linear-gradient(135deg,var(--card),#1b1f55)}
+html[data-tema=premium] .orb{background:radial-gradient(circle at 34% 28%,#efe0b8,#9b83ee 55%,#4b36a8);box-shadow:0 0 70px rgba(155,131,238,.5)}
+html[data-tema=premium] .plan.pro{box-shadow:0 0 0 1.5px rgba(226,200,150,.55),var(--shadow-lg)}
+html[data-tema=premium] .flag{background:linear-gradient(135deg,#f0dfb4,#d6b872);color:#18193f}
+html[data-tema=premium] .toast{border:1px solid rgba(226,200,150,.35)}
+html[data-tema=premium] dialog{border:1px solid rgba(226,200,150,.25)}
+html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
+
+/* ---------- Pomodoro, ícones e demais ajustes já existentes permanecem iguais ---------- */
 </style>
 </head>
 <body>
@@ -409,6 +487,7 @@ dialog .row{margin-top:22px;justify-content:flex-end}
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19c2-5 5-8 9-10"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 21s-7-4.500-7-10V6l7-3 7 3v5c0 5.500-7 10-7 10z"/><path d="M9 12l2 2 4-4"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3l1.900 5.100L18 10l-5.100 1.900L11 17l-1.900-5.100L4 10l5.100-1.900z"/><path d="M19 15v6M16 18h6"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8.500l4.500 4L12 5l4.500 7.500 4.500-4-1.800 10H4.800z"/></symbol>
   <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.500" r="7.500"/><path d="M12 9.500v4l2.500 1.500"/><path d="M9.500 2.500h5"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
@@ -438,7 +517,7 @@ dialog .row{margin-top:22px;justify-content:flex-end}
   <!-- Menu lateral (computador) -->
   <aside class="sidebar" aria-label="Menu principal">
     <a href="#/inicio" class="brand" aria-label="Mente Universitária, ir para o início">
-      <span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+      <span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><i class="crown-b" aria-hidden="true"><svg class="ic"><use href="#i-crown"/></svg></i></span>
       <span><b>Mente Universitária</b><small>bem-estar</small></span>
     </a>
     <nav class="side-nav">
@@ -465,7 +544,7 @@ dialog .row{margin-top:22px;justify-content:flex-end}
     <!-- Barra superior (celular) -->
     <header class="topbar">
       <a href="#/inicio" class="brand" aria-label="Mente Universitária, ir para o início">
-        <span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+        <span class="mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg><i class="crown-b" aria-hidden="true"><svg class="ic"><use href="#i-crown"/></svg></i></span>
         <span><b>Mente Universitária</b></span>
       </a>
       <span class="pill-m" data-plano-curto>Gratuito</span>
@@ -838,6 +917,12 @@ dialog .row{margin-top:22px;justify-content:flex-end}
   <div class="row"><button class="btn ghost" id="dlgNo" type="button">Cancelar</button><button class="btn lil" id="dlgYes" type="button">Ativar visualização</button></div>
 </dialog>
 
+<!-- Camada da transição Gratuito ↔ Premium -->
+<div id="fx" aria-hidden="true">
+  <div class="fx-disc"></div>
+  <div class="fx-crown"><svg viewBox="0 0 24 24"><use href="#i-crown"/></svg><span class="fx-label">Premium</span></div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span id="toastT"></span></div>
 
 <noscript><p style="padding:20px;text-align:center">Ative o JavaScript para usar a demonstração.</p></noscript>
@@ -1066,7 +1151,7 @@ function renderPomo(){
   $('#pLabel').textContent=MODOS[pomo.modo].rot;
   $('#pInfo').textContent=MODOS[pomo.modo].info+(state.foco?' · Sessões hoje: '+state.foco:'');
   $$('.modes button').forEach(b=>b.setAttribute('aria-selected',b.dataset.m===pomo.modo));
-  const n=state.foco%4;$$('#pDots i').forEach((d,i)=>d.classList.toggle('on',i<n||(state.foco>0&&n===0&&state.foco%4===0&&false)));
+  const n=state.foco%4;$$('#pDots i').forEach((d,i)=>d.classList.toggle('on',i<n));
   const s=$('#pStart');s.querySelector('span').textContent=pomo.running?'Pausar':(pomo.left<pomo.total?'Continuar':'Iniciar');
   s.querySelector('use').setAttribute('href',pomo.running?'#i-pause':'#i-play');
   document.title=pomo.running?fmt(pomo.left)+' · '+MODOS[pomo.modo].rot:baseTitle();
@@ -1155,7 +1240,6 @@ function renderDash(){
   $('#kFoco').textContent=(state.foco*25)+' min';
   $('#kFocoSub').textContent=state.foco+(state.foco===1?' sessão':' sessões')+' Pomodoro';
   $('#kDia').textContent=state.diario.length;
-  // semana
   const vals=[3,4,3,5,2,4,4],hoje=(new Date().getDay()+6)%7,dias=['S','T','Q','Q','S','S','D'];
   $('#week').innerHTML=dias.map((d,i)=>{
     let cls='wb',st='';
@@ -1164,11 +1248,9 @@ function renderDash(){
     else cls+=' empty';
     return `<div class="wcol"><div class="track"><div class="${cls}" style="${st};animation-delay:${i*70}ms"></div></div><small>${d}</small></div>`;
   }).join('');
-  // sugestão
   const s=c?SUGEST[c.humor]:['Comece com um check-in','Um minuto para notar como você está já muda o ritmo do dia.','bemestar','Fazer check-in'];
   $('#sugT').textContent=s[0];$('#sugP').textContent=s[1];
   $('#sugA').setAttribute('href','#/'+s[2]);$('#sugA').firstChild.textContent=s[3]+' ';
-  // tarefas
   const dt=$('#dTasks');dt.replaceChildren();
   const pend=state.tarefas.filter(t=>!t.feita).slice(0,4);
   if(!pend.length){const e=document.createElement('div');e.className='empty';e.textContent='Tudo concluído por hoje. Ótimo trabalho!';dt.append(e)}
@@ -1178,30 +1260,80 @@ function renderDash(){
     const nm=document.createElement('span');nm.className='nm';nm.textContent=t.nome;lb.append(ck,nm);
     const cat=document.createElement('span');cat.className='cat '+t.cat;cat.textContent=t.cat;row.append(lb,cat);dt.append(row);
   });
-  // diário
   const dd=$('#dDiary');dd.replaceChildren();
   const r=state.diario[0];
   if(r){const m=document.createElement('div');m.className='mini-entry';const sm=document.createElement('small');sm.textContent=fmtData(r.data)+(r.exemplo?' · exemplo':'');const tx=document.createElement('span');tx.textContent=r.texto.length>150?r.texto.slice(0,150)+'…':r.texto;m.append(sm,tx);dd.append(m)}
   else{const e=document.createElement('div');e.className='empty';e.style.marginTop='12px';e.textContent='Sem registros ainda.';dd.append(e)}
 }
 
-/* ---------- planos ---------- */
+/* ---------- planos + tema Premium ---------- */
 const CMP=[['Conteúdos educativos básicos',1,1],['Questionário de bem-estar',1,1],['Diário emocional',1,1],['Organizador de estudos e Pomodoro',1,1],['Exercícios de relaxamento','Selecionados','Biblioteca completa'],['Conteúdos exclusivos',0,1],['Relatórios emocionais ilustrativos',0,1],['Lembretes e ferramentas de foco',0,1],['Benefícios em consultas (sujeitos a parcerias)',0,1]];
 $('#cmpBody').innerHTML=CMP.map(r=>`<tr><td>${r[0]}</td>${[r[1],r[2]].map(v=>typeof v==='string'?`<td>${v}</td>`:v?`<td class="y">${ic('i-check')}<span class="sr-only">Incluído</span></td>`:`<td class="n">${ic('i-dash')}<span class="sr-only">Não incluído</span></td>`).join('')}</tr>`).join('');
+
+/* applyPlano aplica o estado visual (textos + tema) a partir de state.plano */
 function applyPlano(){
   const p=state.plano==='premium';
+  document.documentElement.dataset.tema=p?'premium':'gratuito';
+  const m=$('#metaTema');if(m)m.setAttribute('content',p?'#0d1236':'#1b2540');
   $$('[data-plano-nome]').forEach(e=>e.textContent=p?'Premium (simulado)':'Plano Gratuito');
   $$('[data-plano-curto]').forEach(e=>e.textContent=p?'Premium':'Gratuito');
   $('#btnPremium').textContent=p?'Voltar ao plano Gratuito':'Simular assinatura';
 }
+
+/* Transição cinematográfica: disco que se expande (ida) ou recolhe (volta).
+   Usa só transform/opacity via Web Animations API, sem dependências. */
+const fx=$('#fx'),fxDisc=$('.fx-disc',fx),fxCrown=$('.fx-crown',fx),fxLabel=$('.fx-label',fx);
+let fxBusy=false;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const anim=(el,kf,op)=>{const a=el.animate(kf,Object.assign({fill:'forwards'},op));return a.finished||new Promise(r=>{a.onfinish=r})};
+const centro=el=>{const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}};
+function avisoPlano(prem){toast(prem?'Visualização Premium ativada. Nenhum pagamento foi realizado.':'Você voltou ao plano Gratuito.')}
+async function trocarPlano(alvo,pt){
+  if(fxBusy||state.plano===alvo)return;
+  const prem=alvo==='premium',apply=()=>{state.plano=alvo;applyPlano()};
+  const reduz=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduz||typeof fx.animate!=='function'){apply();avisoPlano(prem);return}
+  fxBusy=true;
+  const W=window.innerWidth,H=window.innerHeight;
+  const R=Math.hypot(Math.max(pt.x,W-pt.x),Math.max(pt.y,H-pt.y))*1.1;
+  Object.assign(fxDisc.style,{width:2*R+'px',height:2*R+'px',left:(pt.x-R)+'px',top:(pt.y-R)+'px'});
+  fxLabel.textContent=prem?'Premium':'Plano Gratuito';
+  const crownIn=[{opacity:0,transform:'translate(-50%,-44%) scale(.8)'},{opacity:1,transform:'translate(-50%,-50%) scale(1)'}];
+  try{
+    if(prem){
+      fx.classList.add('on');
+      await anim(fxDisc,[{transform:'scale(0)'},{transform:'scale(1)'}],{duration:500,easing:'cubic-bezier(.7,0,.25,1)'});
+      apply();
+      anim(fxCrown,crownIn,{duration:260,easing:'cubic-bezier(.2,.8,.3,1)'});
+      await sleep(260);
+      await anim(fx,[{opacity:1},{opacity:0}],{duration:340,easing:'ease-in'});
+    }else{
+      fxDisc.style.transform='scale(1)';
+      fx.classList.add('on');
+      await Promise.all([anim(fx,[{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'}),anim(fxCrown,crownIn,{duration:260,easing:'ease-out'})]);
+      apply();
+      await sleep(90);
+      anim(fxCrown,[{opacity:1},{opacity:0}],{duration:200});
+      await anim(fxDisc,[{transform:'scale(1)'},{transform:'scale(0)'}],{duration:480,easing:'cubic-bezier(.75,0,.3,1)'});
+    }
+  }catch(e){
+    if(state.plano!==alvo)apply();
+  }finally{
+    fx.classList.remove('on');fxDisc.style.transform='';
+    [fx,fxDisc,fxCrown].forEach(el=>{if(typeof el.getAnimations==='function')el.getAnimations().forEach(a=>a.cancel())});
+    fxBusy=false;
+  }
+  avisoPlano(prem);
+}
 const dlg=$('#dlg');
 $('#btnPremium').addEventListener('click',()=>{
-  if(state.plano==='premium'){state.plano='gratuito';applyPlano();toast('Você voltou ao plano Gratuito.');return}
-  dlg.showModal?dlg.showModal():(confirm('Assinatura demonstrativa. Nenhum pagamento será realizado.')&&confirmarPremium());
+  const pt=centro($('#btnPremium'));
+  if(state.plano==='premium'){trocarPlano('gratuito',pt);return}
+  if(typeof dlg.showModal==='function')dlg.showModal();
+  else if(confirm('Assinatura demonstrativa. Nenhum pagamento será realizado.'))trocarPlano('premium',pt);
 });
-function confirmarPremium(){state.plano='premium';applyPlano();toast('Visualização Premium ativada. Nenhum pagamento foi realizado.')}
 $('#dlgNo').addEventListener('click',()=>dlg.close());
-$('#dlgYes').addEventListener('click',()=>{dlg.close();confirmarPremium()});
+$('#dlgYes').addEventListener('click',()=>{const pt=centro($('#dlgYes'));dlg.close();trocarPlano('premium',pt)});
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 
 /* ---------- início ---------- */
