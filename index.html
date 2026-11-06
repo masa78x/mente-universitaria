@@ -1,290 +1,273 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mente Universitária | Seu espaço de bem-estar</title>
+<meta name="description" content="Protótipo acadêmico fictício de uma plataforma de bem-estar universitário: check-in emocional, diário, tarefas, Pomodoro e relaxamento.">
+<meta name="theme-color" content="#1b2540">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237660b3'/%3E%3Cpath d='M16 25c-5-3-8-6.500-8-11 4.500 0 7.500 1.800 8 5.500.5-5 3.500-8 8-9 0 7-3 12-8 14.500z' fill='%23fff'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
-  --roxo:#8470b7;--roxo-claro:#eee8fb;
-  --verde:#a7c9ba;--fundo:#f8f7fc;
-  --texto:#29334a;--cinza:#667085;
+  --lil-50:#f7f3fd;--lil-100:#eee7fa;--lil-200:#ddd0f4;--lil-300:#c5b3ec;--lil-400:#a78fdd;--lil-500:#8d74c9;--lil-600:#7660b3;--lil-700:#5f4c96;
+  --sg-50:#f0f5f1;--sg-100:#e1ebe4;--sg-200:#c8dacf;--sg-300:#a9c4b4;--sg-500:#7ba08b;--sg-600:#5b8470;--sg-700:#45695a;
+  --nv-950:#141c33;--nv-900:#1b2540;--nv-800:#25325a;--nv-700:#36456f;--nv-500:#5d6a8c;
+  --paper:#fbf8f2;--card:#fffdf9;--line:#e9e2d6;--ink:#1b2540;--muted:#5d6784;
+  --shadow:0 1px 2px rgba(27,37,64,.04),0 14px 34px -14px rgba(27,37,64,.16);
+  --shadow-lg:0 2px 4px rgba(27,37,64,.05),0 28px 60px -22px rgba(27,37,64,.28);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.22,.8,.3,1);
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--fundo);color:var(--texto)}
-button,input,textarea{font:inherit}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.6;background:
+  radial-gradient(900px 520px at 88% -8%,rgba(197,179,236,.38),transparent 62%),
+  radial-gradient(760px 520px at -8% 38%,rgba(169,196,180,.30),transparent 60%),var(--paper);
+  -webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer}
-header{background:white;border-bottom:1px solid #e9e6f1;position:sticky;top:0;z-index:5}
-nav{max-width:1150px;margin:auto;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:21px;font-weight:800;color:var(--roxo)}
-.links{display:flex;gap:8px;flex-wrap:wrap}
-.links button{border:0;background:transparent;padding:10px;color:var(--texto);border-radius:9px}
-.links button:hover,.links button.ativo{background:var(--roxo-claro);color:#6e58a8}
-main{max-width:1150px;margin:auto;padding:28px 20px 70px}
-section{display:none}
-section.ativa{display:block}
-.hero{background:linear-gradient(120deg,#ede7fb,#e3f3eb);padding:55px 45px;border-radius:25px;margin-bottom:32px}
-.hero h1{font-size:clamp(32px,5vw,54px);max-width:680px;margin:15px 0}
-.hero p{max-width:600px}
-p{color:var(--cinza);line-height:1.65}
-h2{font-size:27px}
-.btn{background:var(--roxo);color:white;border:0;border-radius:11px;padding:13px 19px;font-weight:bold;margin:5px 5px 5px 0}
-.btn:hover{filter:brightness(.94)}
-.btn.sec{background:var(--roxo-claro);color:#6e58a8}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:white;border:1px solid #ece9f3;border-radius:18px;padding:24px;box-shadow:0 8px 25px #493b6710}
-.card h3{margin:12px 0}
-.emoji{font-size:30px}
-.page-title{margin-bottom:25px}
-.conteudo{max-width:800px}
-input[type=text],textarea{display:block;width:100%;padding:14px;border:1px solid #ddd8e8;border-radius:10px;margin:12px 0}
-textarea{height:130px;resize:vertical}
-.opcao{background:white;border:1px solid #ddd8e8;border-radius:12px;padding:13px;margin:5px}
-.opcao.escolhida{background:var(--roxo-claro);border-color:var(--roxo)}
-.aviso{background:#f0ebfa;border-left:4px solid var(--roxo);padding:15px;border-radius:8px;margin:20px 0;color:#554c69}
-.registro{background:#f5f2fa;border-radius:10px;padding:15px;margin-top:12px;overflow-wrap:anywhere}
-.tarefa{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px}
-.preco{font-size:34px;font-weight:bold;color:var(--roxo)}
-.selo{background:#e6f3ed;color:#4c856b;padding:7px 12px;border-radius:30px;font-size:12px;display:inline-block}
-footer{text-align:center;padding:25px;color:#888;border-top:1px solid #e9e6f1;font-size:13px}
-@media(max-width:850px){
-nav{display:block}.links{margin-top:14px;flex-wrap:nowrap;overflow:auto}
-.links button{white-space:nowrap}
-.grid{grid-template-columns:repeat(2,1fr)}
-.hero{padding:35px 25px}
-}
-@media(max-width:550px){.grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.15}
+h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em}
+p{margin:0;color:var(--muted)}
+:focus-visible{outline:3px solid var(--lil-400);outline-offset:2px;border-radius:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ic{width:1.25em;height:1.25em;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-<header>
-<nav>
-<div class="logo">✦ mente universitária</div>
-<div class="links">
-<button onclick="abrir('inicio',this)" class="ativo">Início</button>
-<button onclick="abrir('bemestar',this)">Bem-estar</button>
-<button onclick="abrir('diario',this)">Diário</button>
-<button onclick="abrir('estudos',this)">Estudos</button>
-<button onclick="abrir('relaxamento',this)">Relaxamento</button>
-<button onclick="abrir('apoio',this)">Apoio</button>
-<button onclick="abrir('planos',this)">Planos</button>
-</div>
-</nav>
-</header>
+/* ---------- layout ---------- */
+.app{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:26px 16px 20px;color:#cdd3ea;
+  background:radial-gradient(420px 260px at 0 0,rgba(141,116,201,.28),transparent 70%),linear-gradient(180deg,var(--nv-900),var(--nv-950))}
+.brand{display:flex;align-items:center;gap:12px;padding:0 10px 22px}
+.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,var(--lil-400),var(--lil-600));color:#fff;box-shadow:0 8px 20px -6px rgba(141,116,201,.7)}
+.brand b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:#fff;letter-spacing:-.01em;line-height:1.1}
+.brand small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#98a2c6}
+.side-nav{display:flex;flex-direction:column;gap:2px;overflow:auto;flex:1;padding-right:2px}
+.side-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7d89b0;padding:16px 12px 6px}
+.nav-a{position:relative;display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;color:#c6cde6;font-weight:500;font-size:15px;transition:background .25s,color .25s,transform .25s var(--ease)}
+.nav-a:hover{background:rgba(255,255,255,.07);color:#fff;transform:translateX(2px)}
+.nav-a.on{background:rgba(197,179,236,.17);color:#fff}
+.nav-a.on::before{content:"";position:absolute;left:-16px;top:10px;bottom:10px;width:4px;border-radius:0 4px 4px 0;background:var(--lil-300)}
+.nav-a .badge{margin-left:auto;min-width:22px;height:22px;padding:0 7px;border-radius:99px;background:var(--sg-300);color:var(--nv-900);font-size:12px;font-weight:700;display:grid;place-items:center}
+.nav-a .badge:empty{display:none}
+.side-plan{margin-top:14px;padding:16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.side-plan .pill-p{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(169,196,180,.22);color:var(--sg-200)}
+.side-plan p{color:#a9b3d3;font-size:13px;margin:10px 0 12px;line-height:1.5}
+.side-plan a{display:flex;justify-content:center;gap:8px;align-items:center;padding:10px;border-radius:12px;background:var(--lil-300);color:var(--nv-900);font-weight:700;font-size:14px;transition:background .2s,transform .2s}
+.side-plan a:hover{background:var(--lil-200);transform:translateY(-1px)}
+.stage{min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:44px 40px 70px;flex:1}
+.topbar,.tabbar,.sheet{display:none}
 
-<main>
+/* ---------- views ---------- */
+.view{display:none}
+.view.on{display:block;animation:enter .55s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.reveal{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal:not(.in){opacity:0;transform:translateY(18px)}
+.page-head{margin-bottom:28px;max-width:660px}
+.page-head h1{font-size:clamp(32px,4.4vw,48px);margin:10px 0 10px}
+.page-head p{font-size:17px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lil-700)}
+.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--lil-400)}
 
-<section id="inicio" class="ativa">
-<div class="hero">
-<span style="color:#7b67b2;font-weight:bold">SEU ESPAÇO DE BEM-ESTAR</span>
-<h1>Sua mente também merece cuidado.</h1>
-<p>Uma plataforma criada para ajudar estudantes universitários a cuidar do bem-estar emocional e organizar sua rotina acadêmica.</p>
-<button class="btn" onclick="abrir('bemestar')">Experimentar demonstração</button>
-<button class="btn sec" onclick="abrir('planos')">Conhecer planos</button>
-</div>
+/* ---------- components ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border:0;border-radius:99px;background:var(--nv-900);color:#fff;font-weight:600;font-size:15px;transition:transform .25s var(--ease),box-shadow .25s,background .25s,opacity .2s;box-shadow:0 10px 24px -12px rgba(27,37,64,.7)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(27,37,64,.75);background:var(--nv-800)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn .ic{transition:transform .25s var(--ease)}
+.btn:hover .ic-go{transform:translateX(4px)}
+.btn.lil{background:var(--lil-600);box-shadow:0 10px 24px -12px rgba(118,96,179,.9)}
+.btn.lil:hover{background:var(--lil-700)}
+.btn.sage{background:var(--sg-600)}
+.btn.sage:hover{background:var(--sg-700)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{background:var(--lil-50);box-shadow:inset 0 0 0 1.5px var(--lil-300)}
+.btn.sm{padding:9px 15px;font-size:14px}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.icon-btn{width:36px;height:36px;border-radius:10px;border:0;background:transparent;color:var(--nv-500);display:grid;place-items:center;transition:background .2s,color .2s}
+.icon-btn:hover{background:#f6e6e6;color:#b04646}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow)}
+.card h3{font-size:19px;font-weight:650;letter-spacing:-.01em}
+.card.lift{transition:transform .35s var(--ease),box-shadow .35s}
+.card.lift:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.tile{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;flex:none}
+.tile .ic{width:24px;height:24px}
+.t-lil{background:var(--lil-100);color:var(--lil-700)}
+.t-sg{background:var(--sg-100);color:var(--sg-700)}
+.t-nv{background:var(--nv-900);color:var(--lil-200)}
+.aviso{display:flex;gap:12px;align-items:flex-start;background:var(--lil-50);border:1px solid var(--lil-200);border-radius:16px;padding:14px 16px;margin-bottom:22px;color:#4d4766;font-size:14.5px;line-height:1.55}
+.aviso .ic{color:var(--lil-600);margin-top:2px}
+.selo{display:inline-flex;align-items:center;gap:7px;background:var(--sg-100);color:var(--sg-700);padding:6px 13px;border-radius:99px;font-size:12.5px;font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);font-size:14px;font-weight:500;transition:all .2s var(--ease)}
+.chip:hover{border-color:var(--lil-300);transform:translateY(-1px)}
+.chip[aria-pressed=true]{background:var(--lil-100);border-color:var(--lil-500);color:var(--lil-700)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.bar{height:8px;border-radius:99px;background:var(--lil-100);overflow:hidden}
+.bar>i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--lil-400),var(--sg-500));transition:width .6s var(--ease)}
+input[type=text],textarea,select{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;transition:border-color .2s,box-shadow .2s}
+input[type=text]:focus,textarea:focus,select:focus{outline:0;border-color:var(--lil-500);box-shadow:0 0 0 4px rgba(141,116,201,.18)}
+textarea{min-height:140px;resize:vertical;line-height:1.6}
+.stack-y{display:flex;flex-direction:column;gap:16px}
+.conteudo{max-width:820px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.empty{padding:26px;text-align:center;color:var(--muted);border:1.5px dashed var(--lil-200);border-radius:16px;font-size:15px}
 
-<h2>Como podemos ajudar você?</h2>
-<div class="grid">
-<div class="card"><div class="emoji">💜</div><h3>Meu bem-estar</h3><p>Reserve um momento para refletir sobre suas emoções.</p><button class="btn sec" onclick="abrir('bemestar')">Explorar</button></div>
-<div class="card"><div class="emoji">📔</div><h3>Diário emocional</h3><p>Registre seus pensamentos em um espaço de demonstração.</p><button class="btn sec" onclick="abrir('diario')">Explorar</button></div>
-<div class="card"><div class="emoji">📅</div><h3>Meus estudos</h3><p>Organize tarefas, provas e compromissos.</p><button class="btn sec" onclick="abrir('estudos')">Explorar</button></div>
-<div class="card"><div class="emoji">🌿</div><h3>Relaxamento</h3><p>Conheça atividades simples de autocuidado.</p><button class="btn sec" onclick="abrir('relaxamento')">Explorar</button></div>
-<div class="card"><div class="emoji">🤝</div><h3>Apoio profissional</h3><p>Saiba onde procurar orientação especializada.</p><button class="btn sec" onclick="abrir('apoio')">Explorar</button></div>
-<div class="card"><div class="emoji">✨</div><h3>Nossos planos</h3><p>Compare os recursos Gratuito e Premium.</p><button class="btn sec" onclick="abrir('planos')">Explorar</button></div>
-</div>
-</section>
+/* ---------- landing ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:18px 0 56px}
+.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.02;margin:18px 0 20px}
+.hero h1 em{font-style:italic;padding:0 .08em;background:linear-gradient(transparent 64%,var(--sg-200) 64% 92%,transparent 92%)}
+.hero p.lead{font-size:18px;max-width:520px;margin-bottom:30px}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px;font-size:14px;color:var(--muted)}
+.trust span{display:inline-flex;gap:7px;align-items:center}
+.trust .ic{color:var(--sg-600);width:18px;height:18px}
+.stack{position:relative;height:480px}
+.m-card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow-lg);animation:float 7s ease-in-out infinite}
+.m-card h4{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:12px;letter-spacing:.02em}
+.m-a{top:0;left:0;width:78%}
+.m-b{top:140px;right:0;width:206px;text-align:center;z-index:2;animation-delay:-2.5s}
+.m-c{bottom:0;left:5%;width:68%;animation-delay:-4.5s}
+.m-d{position:absolute;right:6%;bottom:38px;z-index:3;display:flex;gap:9px;align-items:center;padding:11px 16px;border-radius:99px;background:var(--sg-600);color:#fff;font-weight:600;font-size:14px;box-shadow:0 18px 30px -14px rgba(69,105,90,.8);animation:float 6s ease-in-out infinite -1s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.mini-faces{display:flex;gap:8px}
+.mini-faces span{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--lil-50);color:var(--lil-600)}
+.mini-faces span.on{background:var(--lil-600);color:#fff;transform:translateY(-3px);box-shadow:0 10px 18px -8px rgba(118,96,179,.8)}
+.mini-faces .ic{width:24px;height:24px}
+.m-task{display:flex;align-items:center;gap:10px;font-size:14px;padding:7px 0;color:var(--ink)}
+.m-task .ck{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--nv-500);display:grid;place-items:center;flex:none}
+.m-task.done{color:var(--muted);text-decoration:line-through}
+.m-task.done .ck{background:var(--sg-600);border-color:var(--sg-600);color:#fff}
+.m-task .ck .ic{width:13px;height:13px;stroke-width:2.6}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.bento .card{display:flex;flex-direction:column;gap:12px;grid-column:span 2}
+.bento .card.w4{grid-column:span 4;background:linear-gradient(135deg,var(--lil-100),#f4eefc 55%,var(--sg-100))}
+.bento .card.w4 .mini-faces span{background:rgba(255,255,255,.75)}
+.bento .card p{flex:1}
+.link-go{display:inline-flex;gap:8px;align-items:center;font-weight:650;font-size:15px;color:var(--lil-700)}
+.link-go .ic{transition:transform .25s var(--ease)}
+.card:hover .link-go .ic-go{transform:translateX(5px)}
+.sec-title{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:64px 0 24px;flex-wrap:wrap}
+.sec-title h2{font-size:clamp(28px,3.6vw,40px);max-width:560px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{padding:6px 4px}
+.step .n{font-family:var(--serif);font-size:56px;line-height:1;color:var(--lil-300);font-style:italic}
+.step h3{margin:10px 0 8px;font-size:20px}
+.cta{margin-top:70px;padding:44px;border-radius:30px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;
+  background:radial-gradient(420px 260px at 90% 0,rgba(141,116,201,.55),transparent 70%),radial-gradient(360px 240px at 0 110%,rgba(123,160,139,.4),transparent 70%),var(--nv-900)}
+.cta h2{font-size:clamp(28px,3.4vw,40px);max-width:520px;color:#fff}
+.cta p{color:#b6bfdc;margin-top:12px}
+.cta .prices{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.cta .prices span{padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.1);font-size:14px}
+.cta .btn{background:var(--lil-300);color:var(--nv-900)}
+.cta .btn:hover{background:#fff}
 
-<section id="bemestar">
-<div class="page-title"><h1>Meu bem-estar 💜</h1><p>Como você está se sentindo hoje?</p></div>
-<div class="conteudo">
-<div class="aviso">Este questionário é apenas educativo e demonstrativo. Não realiza diagnósticos psicológicos.</div>
-<div class="card">
-<h3>Escolha a emoção que mais combina com seu momento:</h3>
-<div id="emocoes">
-<button class="opcao" onclick="selecionar(this)">😊 Bem</button>
-<button class="opcao" onclick="selecionar(this)">🙂 Tranquilo</button>
-<button class="opcao" onclick="selecionar(this)">😐 Neutro</button>
-<button class="opcao" onclick="selecionar(this)">😟 Preocupado</button>
-<button class="opcao" onclick="selecionar(this)">😴 Cansado</button>
-</div>
-<h3>Você conseguiu descansar durante o dia?</h3>
-<div id="descanso">
-<button class="opcao" onclick="selecionar(this)">Sim</button>
-<button class="opcao" onclick="selecionar(this)">Um pouco</button>
-<button class="opcao" onclick="selecionar(this)">Ainda não</button>
-</div>
-<button class="btn" onclick="resultado()">Concluir reflexão</button>
-<p id="resultado"></p>
-</div>
-</div>
-</section>
+/* ---------- dashboard ---------- */
+.dash-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.dash-head h1{font-size:clamp(30px,4vw,44px)}
+.dash-head p{text-transform:capitalize;margin-top:6px}
+.avatar{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(140deg,var(--sg-300),var(--lil-300));font-family:var(--serif);font-size:22px;color:var(--nv-900)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.kpi{padding:20px}
+.kpi small{display:block;color:var(--muted);font-size:13px;font-weight:600;margin-bottom:10px}
+.kpi strong{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.1;display:flex;align-items:center;gap:10px}
+.kpi span.sub{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+.ring{--p:0;position:relative;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--sg-600) calc(var(--p)*1%),var(--sg-100) 0);transition:background .6s}
+.ring::after{content:"";grid-area:1/1;width:44px;height:44px;border-radius:50%;background:var(--card)}
+.ring b{grid-area:1/1;z-index:1;font-size:13px}
+.dash-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;height:170px;margin-top:18px}
+.wcol{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
+.track{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.wb{width:100%;max-width:36px;height:var(--h);border-radius:11px 11px 6px 6px;background:var(--lil-200);animation:grow .9s var(--ease) both}
+.wb.today{background:linear-gradient(var(--lil-500),var(--lil-600))}
+.wb.empty{height:8px;background:transparent;border:1.5px dashed var(--lil-300);animation:none}
+.wcol small{font-size:12px;color:var(--muted);font-weight:600}
+@keyframes grow{from{height:0}}
+.sugestao{background:linear-gradient(140deg,var(--lil-100),var(--sg-100));border:0}
+.sugestao h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:12px 0 8px}
+.sugestao p{color:#4a5470;margin-bottom:18px}
+.mini-list{display:flex;flex-direction:column}
+.mini-entry{padding:14px 16px;border-radius:14px;background:var(--lil-50);margin-top:10px;font-size:15px;color:#3a4260;overflow-wrap:anywhere}
+.mini-entry small{display:block;color:var(--muted);margin-bottom:4px}
 
-<section id="diario">
-<h1>Diário emocional 📔</h1>
-<p>Um espaço para registrar pensamentos e reflexões.</p>
-<div class="conteudo">
-<div class="aviso">Demonstração: não insira informações pessoais ou sensíveis. Os registros desaparecem quando a página é atualizada.</div>
-<div class="card">
-<h3>Como foi seu dia?</h3>
-<textarea id="textoDiario" placeholder="Escreva um exemplo fictício sobre seu dia..."></textarea>
-<button class="btn" onclick="salvarDiario()">Adicionar registro</button>
-<div id="registros"></div>
-</div>
-</div>
-</section>
+/* ---------- check-in ---------- */
+.q h3{display:flex;gap:12px;align-items:center;font-size:18px;margin-bottom:18px}
+.qn{width:28px;height:28px;border-radius:9px;background:var(--lil-100);color:var(--lil-700);display:grid;place-items:center;font-size:14px;font-weight:700;flex:none}
+.opt-t{font-weight:500;color:var(--muted);font-size:14px}
+.faces{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.choice{border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--nv-700);transition:all .25s var(--ease)}
+.choice .ic{width:34px;height:34px;color:var(--nv-500);transition:color .2s,transform .3s var(--ease)}
+.choice:hover{border-color:var(--lil-300);transform:translateY(-3px)}
+.choice[aria-pressed=true]{border-color:var(--lil-500);background:var(--lil-50);box-shadow:0 0 0 4px rgba(141,116,201,.15);color:var(--lil-700);transform:translateY(-3px)}
+.choice[aria-pressed=true] .ic{color:var(--lil-600);transform:scale(1.12)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.seg.five{grid-template-columns:repeat(5,1fr)}
+.seg .choice{flex-direction:row;justify-content:center;padding:14px 8px}
+.scale-l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:10px}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.prog{flex:1;min-width:200px;max-width:340px}
+.prog span{display:block;font-size:13px;color:var(--muted);margin-top:7px}
+.msg{min-height:22px;color:#a2453f;font-size:14.5px}
+.result h2{font-size:clamp(26px,3.4vw,36px);margin:12px 0}
+.result .quote{font-size:17px;color:#3a4260;max-width:620px}
+.result .sum{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.result .tag{display:inline-flex;gap:7px;align-items:center;padding:7px 13px;border-radius:99px;background:var(--lil-100);color:var(--lil-700);font-size:14px;font-weight:600}
+.result .tag.sg{background:var(--sg-100);color:var(--sg-700)}
+.acoes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.acao{display:flex;gap:12px;align-items:center;padding:16px;border-radius:16px;border:1.5px solid var(--line);background:#fff;font-weight:600;transition:all .25s var(--ease)}
+.acao:hover{border-color:var(--lil-300);transform:translateY(-3px);box-shadow:var(--shadow)}
+.note-s{font-size:13.5px;color:var(--muted)}
 
-<section id="estudos">
-<h1>Organizador de estudos 📅</h1>
-<p>Organize suas atividades acadêmicas.</p>
-<div class="conteudo">
-<div class="card">
-<h3>Minhas tarefas</h3>
-<input type="text" id="novaTarefa" placeholder="Ex.: Revisar conteúdo de matemática">
-<button class="btn" onclick="adicionarTarefa()">Adicionar tarefa</button>
-<div id="listaTarefas"></div>
-</div>
-<div class="card" style="margin-top:18px">
-<h3>🍅 Técnica Pomodoro</h3>
-<p>Alterne períodos de concentração e pausas. Um cronômetro interativo poderá ser adicionado nas próximas versões.</p>
-</div>
-</div>
-</section>
+/* ---------- diary ---------- */
+.counter{font-size:13px;color:var(--muted)}
+.entry{padding:18px 20px;border-radius:18px;background:#fff;border:1px solid var(--line);animation:enter .5s var(--ease) both}
+.entry header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.entry time{font-size:13px;color:var(--muted);margin-right:auto}
+.entry p{color:#33405f;overflow-wrap:anywhere;white-space:pre-wrap}
+.tag-m{display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:600;padding:5px 11px;border-radius:99px;background:var(--lil-100);color:var(--lil-700)}
+.tag-m .ic{width:16px;height:16px}
+.tag-x{font-size:12px;font-weight:600;color:var(--sg-700);background:var(--sg-100);padding:3px 9px;border-radius:99px}
 
-<section id="relaxamento">
-<h1>Relaxamento 🌿</h1>
-<p>Pequenas práticas para uma rotina mais equilibrada.</p>
-<div class="grid">
-<div class="card"><div class="emoji">🌬️</div><h3>Respiração consciente</h3><p>Respire suavemente e observe seu ritmo natural por alguns instantes.</p></div>
-<div class="card"><div class="emoji">🚶</div><h3>Pausa ativa</h3><p>Faça uma pausa dos estudos, levante-se e movimente-se confortavelmente.</p></div>
-<div class="card"><div class="emoji">📚</div><h3>Organização</h3><p>Planeje horários realistas para estudar, descansar e aproveitar seu tempo livre.</p></div>
-</div>
-</section>
+/* ---------- study ---------- */
+.cols{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+.add-t{display:grid;grid-template-columns:1fr 140px auto;gap:10px;margin:18px 0 16px}
+.filters{display:flex;gap:6px;background:var(--lil-50);padding:5px;border-radius:99px;width:fit-content;margin-bottom:12px}
+.filters button{border:0;background:transparent;padding:7px 14px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.filters button[aria-selected=true]{background:#fff;color:var(--lil-700);box-shadow:0 2px 8px rgba(27,37,64,.1)}
+.tarefa{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid #efe9dd}
+.tarefa:last-child{border-bottom:0}
+.tarefa.fresh{animation:enter .5s var(--ease) both}
+.tarefa label{display:flex;align-items:center;gap:14px;flex:1;cursor:pointer;min-width:0}
+.tarefa .nm{overflow-wrap:anywhere;transition:color .25s}
+.tarefa.feita .nm{text-decoration:line-through;color:var(--muted)}
+.chk{appearance:none;-webkit-appearance:none;width:24px;height:24px;border:1.8px solid var(--nv-500);border-radius:8px;display:grid;place-items:center;flex:none;cursor:pointer;margin:0;background:#fff;transition:all .25s var(--ease)}
+.chk:hover{border-color:var(--lil-500)}
+.chk:checked{background:var(--sg-600);border-color:var(--sg-600);transform:scale(1.08)}
+.chk:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.4px 2.4px 0;transform:rotate(45deg);margin-top:-2px}
+.cat{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--lil-100);color:var(--lil-700);flex:none}
+.cat.Prova{background:#f6e5e5;color:#a24a4a}.cat.Trabalho{background:var(--sg-100);color:var(--sg-700)}.cat.Pessoal{background:#e4ebf8;color:#3d5690}
+.pomo{text-align:center;position:sticky;top:24px}
+.modes{display:inline-flex;gap:4px;background:var(--lil-50);padding:5px;border-radius:99px;margin:16px 0 8px}
+.modes button{border:0;background:transparent;padding:8px 14px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.modes button[aria-selected=true]{background:#fff;color:var(--lil-700);box-shadow:0 2px 8px rgba(27,37,64,.1)}
+.dial{position:relative;width:236px;height:236px;margin:14px auto}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial circle{fill:none;stroke-width:10}
+.dial .bg{stroke:var(--lil-100)}
+.dial .fg{stroke:var(--lil-600);stroke-linecap:round;stroke-dasharray:578.05;stroke-dashoffset:0;transition:stroke-dashoffset .4s linear,stroke .3s}
+.dial.pausa .fg{stroke:var(--sg-600)}
+.dial .tm{position:absolute;inset:0;display:grid;place-content:center;gap:2px}
+.dial .tm b{font-family:var(--serif);font-weight:500;font-size:54px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.dial .tm span{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.dial.run .fg{filter:drop-shadow(0 0 8px rgba(141,116,201,.55))}
+.dots{display:flex;gap:8px;justify-content:center;margin:6px 0 18px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--lil-100);transition:background .3s,transform .3s}
+.dots i.on{background:var(--lil-500);transform:scale(1.2)}
 
-<section id="apoio">
-<h1>Apoio profissional 🤝</h1>
-<p>Buscar ajuda é uma parte importante do autocuidado.</p>
-<div class="conteudo">
-<div class="card">
-<h3>Onde procurar orientação?</h3>
-<p>A proposta do Mente Universitária é facilitar o acesso a informações sobre serviços de apoio estudantil e profissionais habilitados.</p>
-<p>Em situações de urgência, procure um serviço de emergência. Para apoio emocional no Brasil, o CVV atende pelo número 188.</p>
-<span class="selo">Demonstração — sem agendamento real</span>
-</div>
-</div>
-</section>
-
-<section id="planos">
-<h1>Escolha seu plano ✨</h1>
-<p>Conheça o modelo de assinatura proposto para o projeto fictício.</p>
-<div class="grid">
-<div class="card">
-<span class="selo">Gratuito</span>
-<h2>Essencial</h2>
-<div class="preco">R$ 0</div>
-<p>✓ Conteúdos educativos básicos</p>
-<p>✓ Questionário de bem-estar</p>
-<p>✓ Diário emocional simples</p>
-<p>✓ Exercícios de relaxamento selecionados</p>
-<button class="btn sec" onclick="abrir('inicio')">Experimentar</button>
-</div>
-<div class="card">
-<span class="selo">Premium</span>
-<h2>Mais recursos</h2>
-<div class="preco">R$ 14,90 <small style="font-size:14px">/mês</small></div>
-<p>✓ Todos os recursos gratuitos</p>
-<p>✓ Conteúdos exclusivos</p>
-<p>✓ Relatórios emocionais ilustrativos</p>
-<p>✓ Biblioteca completa de exercícios</p>
-<p>✓ Diário com recursos extras</p>
-<p>✓ Lembretes e ferramentas de foco</p>
-<p>✓ Benefícios em consultas, sujeitos a parcerias</p>
-<button class="btn" onclick="alert('Assinatura demonstrativa. Nenhum pagamento será realizado.')">Simular assinatura</button>
-</div>
-</div>
-</section>
-
-</main>
-
-<footer>
-Mente Universitária © 2026 — Projeto acadêmico fictício.
-Não substitui atendimento psicológico ou médico.
-</footer>
-
-<script>
-function abrir(id){
- document.querySelectorAll("main section").forEach(s=>s.classList.remove("ativa"));
- document.getElementById(id).classList.add("ativa");
- document.querySelectorAll(".links button").forEach(b=>{
-  b.classList.toggle("ativo",b.getAttribute("onclick").includes("'"+id+"'"));
- });
- window.scrollTo(0,0);
-}
-
-function selecionar(botao){
- botao.parentElement.querySelectorAll(".opcao").forEach(b=>b.classList.remove("escolhida"));
- botao.classList.add("escolhida");
-}
-
-function resultado(){
- const e=document.querySelector("#emocoes .escolhida");
- const d=document.querySelector("#descanso .escolhida");
- document.getElementById("resultado").textContent=
- e&&d
- ? "Obrigado por refletir sobre seu dia! Reserve tempo para seu bem-estar. Esta resposta não é uma avaliação clínica."
- : "Selecione uma emoção e uma resposta sobre descanso.";
-}
-
-function salvarDiario(){
- const campo=document.getElementById("textoDiario");
- const texto=campo.value.trim();
- if(!texto)return alert("Escreva um registro primeiro.");
- const registro=document.createElement("div");
- registro.className="registro";
- registro.textContent=texto;
- document.getElementById("registros").prepend(registro);
- campo.value="";
-}
-
-let tarefas=[
- {nome:"Revisar conteúdo da semana",feita:false},
- {nome:"Organizar calendário de provas",feita:false}
-];
-
-function mostrarTarefas(){
- const lista=document.getElementById("listaTarefas");
- lista.replaceChildren();
- tarefas.forEach((t,i)=>{
-  const linha=document.createElement("div");
-  linha.className="tarefa";
-  const rotulo=document.createElement("label");
-  const check=document.createElement("input");
-  check.type="checkbox";
-  check.checked=t.feita;
-  check.onchange=()=>{t.feita=check.checked;mostrarTarefas()};
-  const nome=document.createElement("span");
-  nome.textContent=" "+t.nome;
-  if(t.feita)nome.style.textDecoration="line-through";
-  rotulo.append(check,nome);
-  const excluir=document.createElement("button");
-  excluir.className="btn sec";
-  excluir.textContent="Excluir";
-  excluir.onclick=()=>{tarefas.splice(i,1);mostrarTarefas()};
-  linha.append(rotulo,excluir);
-  lista.append(linha);
- });
-}
-
-function adicionarTarefa(){
- const campo=document.getElementById("novaTarefa");
- const nome=campo.value.trim();
- if(!nome)return;
- tarefas.push({nome,feita:false});
- campo.value="";
- mostrarTarefas();
-}
-mostrarTarefas();
-</script>
-</body>
-</html>
+/* ---------- relax ---------- */
+.breath{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin-bottom:20px;background:linear-gradient(135deg,#fffdf9,var(--lil-50))}
+.orb-wrap{position:relative;width:min(300px,100%);aspect-ratio:1;margin:auto;display:grid;place-items:center}
+.orb-wrap::before,.orb-wrap::after{content:"";position:absolute;inset:0;border-radius:50%
