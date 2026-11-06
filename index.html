@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mente Universitária | Seu espaço de bem-estar</title>
+<style>
+:root{
+  --roxo:#8470b7;--roxo-claro:#eee8fb;
+  --verde:#a7c9ba;--fundo:#f8f7fc;
+  --texto:#29334a;--cinza:#667085;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--fundo);color:var(--texto)}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+header{background:white;border-bottom:1px solid #e9e6f1;position:sticky;top:0;z-index:5}
+nav{max-width:1150px;margin:auto;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:21px;font-weight:800;color:var(--roxo)}
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.links button{border:0;background:transparent;padding:10px;color:var(--texto);border-radius:9px}
+.links button:hover,.links button.ativo{background:var(--roxo-claro);color:#6e58a8}
+main{max-width:1150px;margin:auto;padding:28px 20px 70px}
+section{display:none}
+section.ativa{display:block}
+.hero{background:linear-gradient(120deg,#ede7fb,#e3f3eb);padding:55px 45px;border-radius:25px;margin-bottom:32px}
+.hero h1{font-size:clamp(32px,5vw,54px);max-width:680px;margin:15px 0}
+.hero p{max-width:600px}
+p{color:var(--cinza);line-height:1.65}
+h2{font-size:27px}
+.btn{background:var(--roxo);color:white;border:0;border-radius:11px;padding:13px 19px;font-weight:bold;margin:5px 5px 5px 0}
+.btn:hover{filter:brightness(.94)}
+.btn.sec{background:var(--roxo-claro);color:#6e58a8}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;border:1px solid #ece9f3;border-radius:18px;padding:24px;box-shadow:0 8px 25px #493b6710}
+.card h3{margin:12px 0}
+.emoji{font-size:30px}
+.page-title{margin-bottom:25px}
+.conteudo{max-width:800px}
+input[type=text],textarea{display:block;width:100%;padding:14px;border:1px solid #ddd8e8;border-radius:10px;margin:12px 0}
+textarea{height:130px;resize:vertical}
+.opcao{background:white;border:1px solid #ddd8e8;border-radius:12px;padding:13px;margin:5px}
+.opcao.escolhida{background:var(--roxo-claro);border-color:var(--roxo)}
+.aviso{background:#f0ebfa;border-left:4px solid var(--roxo);padding:15px;border-radius:8px;margin:20px 0;color:#554c69}
+.registro{background:#f5f2fa;border-radius:10px;padding:15px;margin-top:12px;overflow-wrap:anywhere}
+.tarefa{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #eee;gap:10px}
+.preco{font-size:34px;font-weight:bold;color:var(--roxo)}
+.selo{background:#e6f3ed;color:#4c856b;padding:7px 12px;border-radius:30px;font-size:12px;display:inline-block}
+footer{text-align:center;padding:25px;color:#888;border-top:1px solid #e9e6f1;font-size:13px}
+@media(max-width:850px){
+nav{display:block}.links{margin-top:14px;flex-wrap:nowrap;overflow:auto}
+.links button{white-space:nowrap}
+.grid{grid-template-columns:repeat(2,1fr)}
+.hero{padding:35px 25px}
+}
+@media(max-width:550px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo">✦ mente universitária</div>
+<div class="links">
+<button onclick="abrir('inicio',this)" class="ativo">Início</button>
+<button onclick="abrir('bemestar',this)">Bem-estar</button>
+<button onclick="abrir('diario',this)">Diário</button>
+<button onclick="abrir('estudos',this)">Estudos</button>
+<button onclick="abrir('relaxamento',this)">Relaxamento</button>
+<button onclick="abrir('apoio',this)">Apoio</button>
+<button onclick="abrir('planos',this)">Planos</button>
+</div>
+</nav>
+</header>
+
+<main>
+
+<section id="inicio" class="ativa">
+<div class="hero">
+<span style="color:#7b67b2;font-weight:bold">SEU ESPAÇO DE BEM-ESTAR</span>
+<h1>Sua mente também merece cuidado.</h1>
+<p>Uma plataforma criada para ajudar estudantes universitários a cuidar do bem-estar emocional e organizar sua rotina acadêmica.</p>
+<button class="btn" onclick="abrir('bemestar')">Experimentar demonstração</button>
+<button class="btn sec" onclick="abrir('planos')">Conhecer planos</button>
+</div>
+
+<h2>Como podemos ajudar você?</h2>
+<div class="grid">
+<div class="card"><div class="emoji">💜</div><h3>Meu bem-estar</h3><p>Reserve um momento para refletir sobre suas emoções.</p><button class="btn sec" onclick="abrir('bemestar')">Explorar</button></div>
+<div class="card"><div class="emoji">📔</div><h3>Diário emocional</h3><p>Registre seus pensamentos em um espaço de demonstração.</p><button class="btn sec" onclick="abrir('diario')">Explorar</button></div>
+<div class="card"><div class="emoji">📅</div><h3>Meus estudos</h3><p>Organize tarefas, provas e compromissos.</p><button class="btn sec" onclick="abrir('estudos')">Explorar</button></div>
+<div class="card"><div class="emoji">🌿</div><h3>Relaxamento</h3><p>Conheça atividades simples de autocuidado.</p><button class="btn sec" onclick="abrir('relaxamento')">Explorar</button></div>
+<div class="card"><div class="emoji">🤝</div><h3>Apoio profissional</h3><p>Saiba onde procurar orientação especializada.</p><button class="btn sec" onclick="abrir('apoio')">Explorar</button></div>
+<div class="card"><div class="emoji">✨</div><h3>Nossos planos</h3><p>Compare os recursos Gratuito e Premium.</p><button class="btn sec" onclick="abrir('planos')">Explorar</button></div>
+</div>
+</section>
+
+<section id="bemestar">
+<div class="page-title"><h1>Meu bem-estar 💜</h1><p>Como você está se sentindo hoje?</p></div>
+<div class="conteudo">
+<div class="aviso">Este questionário é apenas educativo e demonstrativo. Não realiza diagnósticos psicológicos.</div>
+<div class="card">
+<h3>Escolha a emoção que mais combina com seu momento:</h3>
+<div id="emocoes">
+<button class="opcao" onclick="selecionar(this)">😊 Bem</button>
+<button class="opcao" onclick="selecionar(this)">🙂 Tranquilo</button>
+<button class="opcao" onclick="selecionar(this)">😐 Neutro</button>
+<button class="opcao" onclick="selecionar(this)">😟 Preocupado</button>
+<button class="opcao" onclick="selecionar(this)">😴 Cansado</button>
+</div>
+<h3>Você conseguiu descansar durante o dia?</h3>
+<div id="descanso">
+<button class="opcao" onclick="selecionar(this)">Sim</button>
+<button class="opcao" onclick="selecionar(this)">Um pouco</button>
+<button class="opcao" onclick="selecionar(this)">Ainda não</button>
+</div>
+<button class="btn" onclick="resultado()">Concluir reflexão</button>
+<p id="resultado"></p>
+</div>
+</div>
+</section>
+
+<section id="diario">
+<h1>Diário emocional 📔</h1>
+<p>Um espaço para registrar pensamentos e reflexões.</p>
+<div class="conteudo">
+<div class="aviso">Demonstração: não insira informações pessoais ou sensíveis. Os registros desaparecem quando a página é atualizada.</div>
+<div class="card">
+<h3>Como foi seu dia?</h3>
+<textarea id="textoDiario" placeholder="Escreva um exemplo fictício sobre seu dia..."></textarea>
+<button class="btn" onclick="salvarDiario()">Adicionar registro</button>
+<div id="registros"></div>
+</div>
+</div>
+</section>
+
+<section id="estudos">
+<h1>Organizador de estudos 📅</h1>
+<p>Organize suas atividades acadêmicas.</p>
+<div class="conteudo">
+<div class="card">
+<h3>Minhas tarefas</h3>
+<input type="text" id="novaTarefa" placeholder="Ex.: Revisar conteúdo de matemática">
+<button class="btn" onclick="adicionarTarefa()">Adicionar tarefa</button>
+<div id="listaTarefas"></div>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>🍅 Técnica Pomodoro</h3>
+<p>Alterne períodos de concentração e pausas. Um cronômetro interativo poderá ser adicionado nas próximas versões.</p>
+</div>
+</div>
+</section>
+
+<section id="relaxamento">
+<h1>Relaxamento 🌿</h1>
+<p>Pequenas práticas para uma rotina mais equilibrada.</p>
+<div class="grid">
+<div class="card"><div class="emoji">🌬️</div><h3>Respiração consciente</h3><p>Respire suavemente e observe seu ritmo natural por alguns instantes.</p></div>
+<div class="card"><div class="emoji">🚶</div><h3>Pausa ativa</h3><p>Faça uma pausa dos estudos, levante-se e movimente-se confortavelmente.</p></div>
+<div class="card"><div class="emoji">📚</div><h3>Organização</h3><p>Planeje horários realistas para estudar, descansar e aproveitar seu tempo livre.</p></div>
+</div>
+</section>
+
+<section id="apoio">
+<h1>Apoio profissional 🤝</h1>
+<p>Buscar ajuda é uma parte importante do autocuidado.</p>
+<div class="conteudo">
+<div class="card">
+<h3>Onde procurar orientação?</h3>
+<p>A proposta do Mente Universitária é facilitar o acesso a informações sobre serviços de apoio estudantil e profissionais habilitados.</p>
+<p>Em situações de urgência, procure um serviço de emergência. Para apoio emocional no Brasil, o CVV atende pelo número 188.</p>
+<span class="selo">Demonstração — sem agendamento real</span>
+</div>
+</div>
+</section>
+
+<section id="planos">
+<h1>Escolha seu plano ✨</h1>
+<p>Conheça o modelo de assinatura proposto para o projeto fictício.</p>
+<div class="grid">
+<div class="card">
+<span class="selo">Gratuito</span>
+<h2>Essencial</h2>
+<div class="preco">R$ 0</div>
+<p>✓ Conteúdos educativos básicos</p>
+<p>✓ Questionário de bem-estar</p>
+<p>✓ Diário emocional simples</p>
+<p>✓ Exercícios de relaxamento selecionados</p>
+<button class="btn sec" onclick="abrir('inicio')">Experimentar</button>
+</div>
+<div class="card">
+<span class="selo">Premium</span>
+<h2>Mais recursos</h2>
+<div class="preco">R$ 14,90 <small style="font-size:14px">/mês</small></div>
+<p>✓ Todos os recursos gratuitos</p>
+<p>✓ Conteúdos exclusivos</p>
+<p>✓ Relatórios emocionais ilustrativos</p>
+<p>✓ Biblioteca completa de exercícios</p>
+<p>✓ Diário com recursos extras</p>
+<p>✓ Lembretes e ferramentas de foco</p>
+<p>✓ Benefícios em consultas, sujeitos a parcerias</p>
+<button class="btn" onclick="alert('Assinatura demonstrativa. Nenhum pagamento será realizado.')">Simular assinatura</button>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+Mente Universitária © 2026 — Projeto acadêmico fictício.
+Não substitui atendimento psicológico ou médico.
+</footer>
+
+<script>
+function abrir(id){
+ document.querySelectorAll("main section").forEach(s=>s.classList.remove("ativa"));
+ document.getElementById(id).classList.add("ativa");
+ document.querySelectorAll(".links button").forEach(b=>{
+  b.classList.toggle("ativo",b.getAttribute("onclick").includes("'"+id+"'"));
+ });
+ window.scrollTo(0,0);
+}
+
+function selecionar(botao){
+ botao.parentElement.querySelectorAll(".opcao").forEach(b=>b.classList.remove("escolhida"));
+ botao.classList.add("escolhida");
+}
+
+function resultado(){
+ const e=document.querySelector("#emocoes .escolhida");
+ const d=document.querySelector("#descanso .escolhida");
+ document.getElementById("resultado").textContent=
+ e&&d
+ ? "Obrigado por refletir sobre seu dia! Reserve tempo para seu bem-estar. Esta resposta não é uma avaliação clínica."
+ : "Selecione uma emoção e uma resposta sobre descanso.";
+}
+
+function salvarDiario(){
+ const campo=document.getElementById("textoDiario");
+ const texto=campo.value.trim();
+ if(!texto)return alert("Escreva um registro primeiro.");
+ const registro=document.createElement("div");
+ registro.className="registro";
+ registro.textContent=texto;
+ document.getElementById("registros").prepend(registro);
+ campo.value="";
+}
+
+let tarefas=[
+ {nome:"Revisar conteúdo da semana",feita:false},
+ {nome:"Organizar calendário de provas",feita:false}
+];
+
+function mostrarTarefas(){
+ const lista=document.getElementById("listaTarefas");
+ lista.replaceChildren();
+ tarefas.forEach((t,i)=>{
+  const linha=document.createElement("div");
+  linha.className="tarefa";
+  const rotulo=document.createElement("label");
+  const check=document.createElement("input");
+  check.type="checkbox";
+  check.checked=t.feita;
+  check.onchange=()=>{t.feita=check.checked;mostrarTarefas()};
+  const nome=document.createElement("span");
+  nome.textContent=" "+t.nome;
+  if(t.feita)nome.style.textDecoration="line-through";
+  rotulo.append(check,nome);
+  const excluir=document.createElement("button");
+  excluir.className="btn sec";
+  excluir.textContent="Excluir";
+  excluir.onclick=()=>{tarefas.splice(i,1);mostrarTarefas()};
+  linha.append(rotulo,excluir);
+  lista.append(linha);
+ });
+}
+
+function adicionarTarefa(){
+ const campo=document.getElementById("novaTarefa");
+ const nome=campo.value.trim();
+ if(!nome)return;
+ tarefas.push({nome,feita:false});
+ campo.value="";
+ mostrarTarefas();
+}
+mostrarTarefas();
+</script>
+</body>
+</html>
