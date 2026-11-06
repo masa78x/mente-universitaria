@@ -354,6 +354,22 @@ dialog .row{margin-top:22px;justify-content:flex-end}
 .fx-crown svg{width:60px;height:60px;fill:rgba(232,211,160,.16);stroke:#e8d3a0;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 18px rgba(232,211,160,.5))}
 .fx-label{font-family:var(--serif);font-size:15px;letter-spacing:.32em;text-transform:uppercase;padding-left:.32em}
 
+
+/* Recursos demonstrativos dos planos */
+.locked-feature{position:relative;opacity:.78;border-style:dashed!important}
+.locked-feature summary{cursor:pointer}
+.locked-feature summary::after{content:'🔒 Premium';display:inline-block;align-self:flex-start;padding:4px 11px;border-radius:99px;background:var(--lil-100);color:var(--lil-700);font:700 12px var(--sans)}
+.premium-panel{margin-top:20px;border:1px solid var(--line);border-radius:22px;padding:24px;background:var(--card);box-shadow:var(--shadow)}
+.premium-panel h3{margin-bottom:8px}.premium-panel p{margin-bottom:14px}
+.premium-locked{background:var(--lil-50);border-radius:15px;padding:18px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.premium-locked .btn{flex:none}
+.premium-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.premium-metrics>div{border:1px solid var(--line);border-radius:15px;padding:15px}
+.premium-metrics strong{font-size:27px;display:block;color:var(--lil-700)}
+.premium-metrics small{color:var(--muted)}
+.premium-hint{margin-top:10px;font-size:13px;color:var(--muted)}
+@media(max-width:600px){.premium-metrics{grid-template-columns:1fr}.premium-locked .btn{width:100%}}
+
 /* ---------- responsive ---------- */
 @media(max-width:1060px){
   .hero{grid-template-columns:1fr;gap:34px}
@@ -695,7 +711,13 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
             </div>
           </div>
         </div>
-      </section>
+      
+        <div class="premium-panel" id="relatorioPremium" aria-live="polite">
+          <h3>Relatório de bem-estar <span class="selo">Premium</span></h3>
+          <p>Resumo ilustrativo da demonstração, sem avaliação clínica.</p>
+          <div id="relatorioPremiumBody"></div>
+        </div>
+</section>
 
       <!-- BEM-ESTAR -->
       <section class="view" id="v-bemestar">
@@ -799,12 +821,12 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
             <summary><span class="tile t-lil"><svg class="ic"><use href="#i-sun"/></svg></span><h3>Pausa ativa</h3><p>Faça uma pausa dos estudos, levante-se e movimente-se confortavelmente.</p><span class="more"><svg class="ic"><use href="#i-plus"/></svg>Ver passos</span></summary>
             <ol><li>Levante-se e beba um copo de água.</li><li>Gire os ombros e alongue o pescoço com cuidado.</li><li>Caminhe por 3 a 5 minutos.</li><li>Olhe para longe da tela por alguns segundos.</li></ol>
           </details>
-          <details class="card rcard lift">
+          <details class="card rcard lift" data-exclusivo="premium">
             <summary><span class="tile t-nv"><svg class="ic"><use href="#i-tasks"/></svg></span><h3>Organização</h3><p>Planeje horários realistas para estudar, descansar e aproveitar seu tempo livre.</p><span class="more"><svg class="ic"><use href="#i-plus"/></svg>Ver passos</span></summary>
             <ol><li>Liste as 3 prioridades do dia.</li><li>Reserve blocos de foco de 25 minutos.</li><li>Programe pausas e uma hora de descanso.</li><li>Deixe uma folga para imprevistos.</li></ol>
           </details>
         </div>
-        <details class="card rcard lift" style="margin-top:18px">
+        <details class="card rcard lift" data-exclusivo="premium" style="margin-top:18px">
           <summary><span class="tile t-sg"><svg class="ic"><use href="#i-leaf"/></svg></span><h3>Aterramento 5-4-3-2-1</h3><p>Uma prática de atenção aos sentidos para voltar ao momento presente.</p><span class="more"><svg class="ic"><use href="#i-plus"/></svg>Ver passos</span></summary>
           <ol><li>Nomeie 5 coisas que você vê.</li><li>Toque em 4 objetos e perceba a textura.</li><li>Escute 3 sons ao redor.</li><li>Identifique 2 cheiros.</li><li>Perceba 1 sabor e respire fundo.</li></ol>
         </details>
@@ -844,6 +866,7 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
 
       <!-- PLANOS -->
       <section class="view" id="v-planos">
+        <p id="limitesPlano" class="aviso">Gratuito: até 3 registros no diário, 5 tarefas e 1 check-in por visita.</p>
         <header class="page-head"><span class="eyebrow">Assinatura fictícia</span><h1>Escolha seu plano</h1><p>Conheça o modelo de assinatura proposto para o projeto fictício.</p></header>
         <div class="plans">
           <div class="card plan">
@@ -852,9 +875,9 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
             <div class="price">R$ 0</div>
             <ul>
               <li><svg class="ic"><use href="#i-check"/></svg>Conteúdos educativos básicos</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Questionário de bem-estar</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Diário emocional simples</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Exercícios de relaxamento selecionados</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>Questionário de bem-estar (1 por visita)</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>Diário emocional (até 3 registros)</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>2 exercícios de relaxamento liberados</li>
             </ul>
             <a class="btn ghost" href="#/painel">Experimentar</a>
           </div>
@@ -866,10 +889,10 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
             <ul>
               <li><svg class="ic"><use href="#i-check"/></svg>Todos os recursos gratuitos</li>
               <li><svg class="ic"><use href="#i-check"/></svg>Conteúdos exclusivos</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Relatórios emocionais ilustrativos</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>Relatório ilustrativo da sessão</li>
               <li><svg class="ic"><use href="#i-check"/></svg>Biblioteca completa de exercícios</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Diário com recursos extras</li>
-              <li><svg class="ic"><use href="#i-check"/></svg>Lembretes e ferramentas de foco</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>Diário sem limite de registros</li>
+              <li><svg class="ic"><use href="#i-check"/></svg>Lembretes e ferramentas de foco (previstos)</li>
               <li><svg class="ic"><use href="#i-check"/></svg>Benefícios em consultas, sujeitos a parcerias</li>
             </ul>
             <button class="btn lil" id="btnPremium" type="button">Simular assinatura</button>
@@ -878,7 +901,7 @@ html[data-tema=premium] .step .n{color:#d6b872;opacity:.75}
         <div class="card cmp"><table><thead><tr><th scope="col">Recurso</th><th scope="col">Gratuito</th><th scope="col">Premium</th></tr></thead><tbody id="cmpBody"></tbody></table></div>
         <div class="faq">
           <details><summary>Isto é um atendimento psicológico?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Não. O Mente Universitária é um protótipo acadêmico fictício, com conteúdo educativo. Não faz diagnóstico nem substitui atendimento psicológico ou médico.</p></details>
-          <details><summary>Algum pagamento será realizado?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Não. A assinatura é apenas uma simulação visual: não há cobrança, login ou coleta de dados.</p></details>
+          <details><summary>Algum pagamento será realizado?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Não. A assinatura e os desbloqueios são apenas uma simulação local: não há cobrança, login ou coleta de dados.</p></details>
           <details><summary>Meus registros ficam salvos?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Não. Tudo fica apenas na memória do navegador e desaparece ao atualizar a página.</p></details>
         </div>
       </section>
@@ -956,6 +979,31 @@ const state={
   filtro:'todas',foco:0,plano:'gratuito'
 };
 
+/* ---------- limites da demonstração ---------- */
+const LIMITES={diario:3,tarefas:5,checkins:1};
+let checkinsFeitos=0;
+const premium=()=>state.plano==='premium';
+function abrirPremium(){location.hash='#/planos';toast('Recurso Premium. Ative a demonstração em Planos para desbloquear.');}
+function limiteAtingido(tipo,quantidade){if(premium()||quantidade<LIMITES[tipo])return false;abrirPremium();return true;}
+function renderRelatorio(){
+  const el=$('#relatorioPremiumBody');if(!el)return;
+  if(!premium()){
+    el.innerHTML='<div class="premium-locked"><span>🔒 Desbloqueie o resumo de estudos e bem-estar.</span><button type="button" class="btn sm" id="verRelatorio">Conhecer Premium</button></div>';
+    $('#verRelatorio').addEventListener('click',abrirPremium);return;
+  }
+  const feitas=state.tarefas.filter(t=>t.feita).length;
+  el.innerHTML='<div class="premium-metrics"><div><strong>'+checkinsFeitos+'</strong><small>Check-ins nesta visita</small></div><div><strong>'+feitas+'/'+state.tarefas.length+'</strong><small>Tarefas concluídas</small></div><div><strong>'+state.foco+'</strong><small>Sessões de foco</small></div></div><p class="premium-hint">Indicadores ilustrativos desta sessão; não representam diagnóstico.</p>';
+}
+function aplicarBloqueios(){
+  $$('[data-exclusivo]').forEach(el=>{
+    const lock=!premium();el.classList.toggle('locked-feature',lock);
+    el.setAttribute('aria-label',lock?'Exclusivo Premium: '+(el.querySelector('h3')?.textContent||'exercício'):'Exercício disponível');
+    if(lock)el.removeAttribute('open');
+  });
+  const msg=$('#limitesPlano');if(msg)msg.textContent=premium()?'Premium demonstrativo: recursos liberados.':'Gratuito: até 3 registros no diário, 5 tarefas e 1 check-in por visita.';
+  renderRelatorio();
+}
+
 /* ---------- toast ---------- */
 let toastT;
 function toast(msg){const t=$('#toast');$('#toastT').textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3400)}
@@ -1026,7 +1074,9 @@ const TEXTOS={
   cansado:['O cansaço é um sinal para desacelerar, e não para cobrar mais de si.','Que tal uma pausa curta e um plano de estudos mais leve para hoje?',['respirar','foco','apoio']]
 };
 $('#qSend').addEventListener('click',()=>{
+  if(limiteAtingido('checkins',checkinsFeitos))return;
   if(!sel.humor||!sel.descanso){$('#resultado').textContent='Selecione uma emoção e uma resposta sobre descanso.';return}
+  checkinsFeitos++;
   state.checkin={humor:sel.humor,descanso:sel.descanso,energia:sel.energia,temas:[...sel.temas],hora:new Date()};
   renderResultado();
   $('#qForm').hidden=true;$('#qResult').hidden=false;window.scrollTo(0,0);renderDash();
@@ -1099,6 +1149,7 @@ function renderDiario(){
 $('#btnDiario').addEventListener('click',()=>{
   const ta=$('#textoDiario'),texto=ta.value.trim();
   if(!texto){toast('Escreva um registro primeiro.');ta.focus();return}
+  if(limiteAtingido('diario',state.diario.filter(x=>!x.exemplo).length))return;
   state.diario.unshift({id:++uid,texto,humor:tagDiario,data:new Date()});
   ta.value='';$('#cntDiario').textContent='0/600';renderDiario();toast('Registro adicionado.');
 });
@@ -1129,6 +1180,7 @@ function renderTarefas(){
 function addTarefa(){
   const c=$('#novaTarefa'),nome=c.value.trim();
   if(!nome){c.focus();return}
+  if(limiteAtingido('tarefas',state.tarefas.length))return;
   state.tarefas.unshift({id:++uid,nome,cat:$('#novaCat').value,feita:false,fresh:true});
   c.value='';renderTarefas();
 }
@@ -1193,6 +1245,12 @@ $('#pSkip').addEventListener('click',()=>{
   if(pomo.modo==='foco')setModo(state.foco%4===3?'longa':'curta');else setModo('foco');
 });
 $$('.modes button').forEach(b=>b.addEventListener('click',()=>setModo(b.dataset.m)));
+
+/* Bloqueio real da abertura de exercícios exclusivos. */
+document.addEventListener('click',e=>{
+  const summary=e.target.closest('details[data-exclusivo] > summary');
+  if(summary&&!premium()){e.preventDefault();abrirPremium()}
+},true);
 
 /* ---------- respiração guiada ---------- */
 const FASES=[{t:'Inspire',s:4,sc:1},{t:'Segure',s:4,sc:1},{t:'Solte o ar',s:6,sc:.62}];
@@ -1260,6 +1318,7 @@ function renderDash(){
     const nm=document.createElement('span');nm.className='nm';nm.textContent=t.nome;lb.append(ck,nm);
     const cat=document.createElement('span');cat.className='cat '+t.cat;cat.textContent=t.cat;row.append(lb,cat);dt.append(row);
   });
+  renderRelatorio();
   const dd=$('#dDiary');dd.replaceChildren();
   const r=state.diario[0];
   if(r){const m=document.createElement('div');m.className='mini-entry';const sm=document.createElement('small');sm.textContent=fmtData(r.data)+(r.exemplo?' · exemplo':'');const tx=document.createElement('span');tx.textContent=r.texto.length>150?r.texto.slice(0,150)+'…':r.texto;m.append(sm,tx);dd.append(m)}
@@ -1267,7 +1326,7 @@ function renderDash(){
 }
 
 /* ---------- planos + tema Premium ---------- */
-const CMP=[['Conteúdos educativos básicos',1,1],['Questionário de bem-estar',1,1],['Diário emocional',1,1],['Organizador de estudos e Pomodoro',1,1],['Exercícios de relaxamento','Selecionados','Biblioteca completa'],['Conteúdos exclusivos',0,1],['Relatórios emocionais ilustrativos',0,1],['Lembretes e ferramentas de foco',0,1],['Benefícios em consultas (sujeitos a parcerias)',0,1]];
+const CMP=[['Conteúdos educativos básicos',1,1],['Questionário de bem-estar','1 por visita','Ilimitado'],['Diário emocional','3 registros','Ilimitado'],['Organizador de estudos e Pomodoro','5 tarefas','Tarefas ilimitadas'],['Exercícios de relaxamento','Selecionados','Biblioteca completa'],['Conteúdos exclusivos',0,1],['Relatório ilustrativo da sessão',0,1],['Lembretes e ferramentas de foco','Previstos','Previstos'],['Benefícios em consultas (sujeitos a parcerias)',0,1]];
 $('#cmpBody').innerHTML=CMP.map(r=>`<tr><td>${r[0]}</td>${[r[1],r[2]].map(v=>typeof v==='string'?`<td>${v}</td>`:v?`<td class="y">${ic('i-check')}<span class="sr-only">Incluído</span></td>`:`<td class="n">${ic('i-dash')}<span class="sr-only">Não incluído</span></td>`).join('')}</tr>`).join('');
 
 /* applyPlano aplica o estado visual (textos + tema) a partir de state.plano */
@@ -1278,6 +1337,7 @@ function applyPlano(){
   $$('[data-plano-nome]').forEach(e=>e.textContent=p?'Premium (simulado)':'Plano Gratuito');
   $$('[data-plano-curto]').forEach(e=>e.textContent=p?'Premium':'Gratuito');
   $('#btnPremium').textContent=p?'Voltar ao plano Gratuito':'Simular assinatura';
+  aplicarBloqueios();
 }
 
 /* Transição cinematográfica: disco que se expande (ida) ou recolhe (volta).
