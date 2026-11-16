@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mente Universitária | Seu espaço de bem-estar</title>
-<meta name="description" content="Protótipo acadêmico fictício de uma plataforma de bem-estar universitário: check-in emocional, diário, tarefas, Pomodoro e relaxamento.">
+<meta name="description" content="Bem-estar emocional e organização dos estudos em um só lugar. Conheça nosso protótipo acadêmico.">
 <meta name="theme-color" id="metaTema" content="#3A2B22">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1184,6 +1184,106 @@ input[type="text"]:focus-visible,input[type="email"]:focus-visible,textarea:focu
   .plan.pro > .selo {max-width: calc(100% - 114px);font-size: 11px;padding: 5px 9px;}
 }
 </style>
+<!-- Compartilhamento WhatsApp, Facebook e redes sociais -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mente Universitária">
+<meta property="og:title" content="Mente Universitária | Sua jornada merece equilíbrio">
+<meta property="og:description" content="Bem-estar emocional e organização dos estudos em um só lugar. Conheça nosso protótipo acadêmico.">
+<meta property="og:url" content="https://masa78x.github.io/mente-universitaria/">
+<meta property="og:image" content="https://masa78x.github.io/mente-universitaria/mente-universitaria-preview-whatsapp.png">
+<meta property="og:image:secure_url" content="https://masa78x.github.io/mente-universitaria/mente-universitaria-preview-whatsapp.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mente Universitária: sua jornada merece mais equilíbrio. Cérebro, folhas e livro na paleta marrom, bege e terracota.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mente Universitária | Sua jornada merece equilíbrio">
+<meta name="twitter:description" content="Bem-estar emocional e organização dos estudos em um só lugar.">
+<meta name="twitter:image" content="https://masa78x.github.io/mente-universitaria/mente-universitaria-preview-whatsapp.png">
+
+<style id="mu-mobile-first-2026">
+/* Design mobile-first exclusivo: mantém o desktop e o sistema intactos. */
+.mu-mobile-home{display:none}
+@media (max-width: 960px){
+ html{scroll-padding-top:86px}
+ body{background:#F9F6F0}
+ .mu-mobile-home{display:block;color:#2C2825;font-family:var(--sans,system-ui,sans-serif)}
+ #v-inicio>.beige-hero,#v-inicio>.sec-title,#v-inicio>.bento,#v-inicio>.steps,#v-inicio>.cta{display:none!important}
+ .stage .wrap{padding:0 0 calc(100px + env(safe-area-inset-bottom,0px))!important;max-width:none}
+ #v-inicio{padding:0 18px}
+ #v-inicio .mu-mobile-home{max-width:540px;margin:0 auto}
+ .topbar{min-height:76px!important;padding:10px 18px!important;padding-top:calc(10px + env(safe-area-inset-top,0px))!important;background:#F9F6F0!important;border-bottom:1px solid #E7DCCF!important;box-shadow:none!important}
+ .topbar .brand{display:flex;align-items:center;gap:8px;min-width:0}
+ .topbar .mark.mu-logo-mark{width:54px!important;height:54px!important;min-width:54px!important;flex:none;box-shadow:none!important;background:transparent!important;padding:0!important}
+ .topbar .mark.mu-logo-mark .mu-logo-img{width:100%!important;height:100%!important;object-fit:contain!important}
+ .topbar .brand b{font-family:var(--serif,Georgia,serif);font-weight:600;font-size:clamp(16px,4vw,20px)!important;letter-spacing:-.035em;white-space:nowrap}
+ .topbar .pill,.topbar .plan-pill,.topbar [id*="plano" i]{flex-shrink:0}
+ .mu-mobile-intro{padding:24px 4px 20px}
+ .mu-mobile-kicker{display:flex;align-items:center;gap:9px;color:#916441;font-size:10px;font-weight:800;letter-spacing:.16em}
+ .mu-kicker-dot{width:7px;height:7px;border-radius:50%;background:#A98052}
+ .mu-mobile-intro h1{margin:12px 0 10px;font-family:var(--serif,Georgia,serif);font-weight:500;font-size:clamp(36px,9vw,51px);line-height:1.09;letter-spacing:-.045em;color:#30251E}
+ .mu-mobile-intro h1 em{color:#9B6847;font-weight:500}
+ .mu-mobile-intro p{margin:0;font-size:14px;line-height:1.65;color:#71665C;max-width:39ch}
+ .mu-mobile-check{padding:22px 18px 18px;border:1px solid #DFCEBB;border-radius:21px;background:linear-gradient(145deg,#EDE2D2 0%,#F6EEE3 67%,#EFE7D8 100%);box-shadow:0 16px 32px -27px #5B3828}
+ .mu-mobile-check-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+ .mu-micro-label{font-size:10px;color:#8B654D;letter-spacing:.12em;font-weight:800}
+ .mu-mobile-check h2{font-family:var(--serif,Georgia,serif);color:#35291F;font-size:26px;line-height:1.2;margin:8px 0 0;font-weight:500}
+ .mu-check-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#F9F4EB;color:#956A4C;flex:none}
+ .mu-check-icon svg{width:24px;height:24px}
+ .mu-check-desc{margin:12px 0 17px;font-size:13px;color:#746558}
+ .mu-quick-moods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:15px}
+ .mu-quick-mood{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:90px;padding:12px 5px;border:1px solid #E7DDD0;border-radius:12px;background:#FFFCF6;color:#645142;font-family:inherit;font-weight:650;font-size:12px;transition:transform .28s cubic-bezier(.22,1,.36,1),border-color .28s,background .28s}
+ .mu-quick-mood .mu-face{width:37px;height:37px;display:grid;place-items:center;font-size:28px;line-height:1;font-family:Arial,sans-serif;font-weight:400}
+ .mu-face svg{width:32px;height:32px;display:block} .mu-quick-mood[aria-pressed="true"]{background:#E9D4BD;border-color:#9C6E4D;transform:translateY(-2px);color:#523729}
+ .mu-check-cta{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;min-height:50px;border-radius:10px;background:#805033;color:#fff!important;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 8px 16px -12px #4D2C1A}
+ .mu-check-notice{font-size:11px!important;line-height:1.5;text-align:center;color:#837365;margin:12px 0 0!important}
+ .mu-mobile-section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:28px 1px 14px}
+ .mu-mobile-section-heading h2{font-family:var(--serif,Georgia,serif);font-weight:500;color:#34271E;font-size:29px;letter-spacing:-.025em;margin:0}
+ .mu-mobile-section-heading span{font-size:11px;color:#8D7A69;text-align:right}
+ .mu-mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .mu-mini-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:162px;padding:17px 14px 16px;border-radius:16px;border:1px solid rgba(109,77,52,.11);text-decoration:none!important;color:#342A22!important;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+ .mu-mini-card:active{transform:scale(.98)}
+ .mu-mini-olive{background:#E5E5D9}.mu-mini-clay{background:#F0DFD1}.mu-mini-sand{background:#EDE6D9}.mu-mini-premium{background:#E4D5BD}
+ .mu-mini-ico{display:grid;place-items:center;width:41px;height:41px;border-radius:12px;background:rgba(255,252,247,.58);color:#805033;margin-bottom:auto}
+ .mu-mini-ico svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+ .mu-mini-card strong{font-size:14px;line-height:1.2;font-weight:700;margin-top:16px;letter-spacing:-.025em;white-space:normal}
+ .mu-mini-card small{font-size:11px;color:#776B5D;line-height:1.5;margin-top:4px}
+ .mu-mini-arrow{position:absolute;right:15px;top:17px;color:#805033;font-size:17px}
+ .mu-luna-chip{display:inline-block;vertical-align:middle;font-size:8px;font-weight:800;letter-spacing:.04em;background:#B9925C;color:#2D221B;padding:3px 5px;border-radius:5px;margin-left:3px}
+ .mu-mobile-help{display:flex;align-items:center;gap:12px;background:#FFFCF7;border:1px solid #E7DCCF;border-radius:15px;padding:14px 15px;margin:16px 0 0;text-decoration:none!important;color:#34291F!important}
+ .mu-help-mark{width:42px;height:42px;border-radius:12px;background:#F1E5D8;color:#906246;display:grid;place-items:center;font-size:25px;flex:none}
+ .mu-mobile-help>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:3px}
+ .mu-mobile-help strong{font-size:14px}.mu-mobile-help small{font-size:11px;color:#87776B}
+ .mu-mobile-institutional{padding:25px 2px 12px;margin-top:25px;border-top:1px solid #E5D8C8}
+ .mu-mobile-institutional>span{font-size:10px;font-weight:800;color:#976F52;letter-spacing:.14em}
+ .mu-mobile-institutional p{font-family:var(--serif,Georgia,serif);font-size:22px;line-height:1.3;margin:9px 0;color:#382A20}
+ .mu-mobile-institutional a{font-size:13px;color:#815336;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+ .mu-mobile-disclaimer{padding:10px 2px 0!important;font-size:10px!important;line-height:1.6!important;color:#8B7B6B}
+ .mu-mobile-disclaimer a{text-decoration:underline}
+ /* Navegação: cinco alvos iguais, Luna alinhada aos demais e sem sobreposição */
+ body .tabbar{position:fixed!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;align-items:center!important;gap:0!important;height:auto!important;min-height:70px!important;bottom:0!important;padding:7px 7px calc(6px + env(safe-area-inset-bottom,0px))!important;background:rgba(250,247,241,.97)!important;border-top:1px solid #E5DBD0!important;box-shadow:0 -8px 24px -22px #4B3322!important;z-index:100!important;backdrop-filter:blur(12px)}
+ body .tabbar .tab{height:61px!important;min-height:61px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;padding:3px 1px!important;position:relative!important;transform:none!important;flex:none!important;background:transparent!important;border:0!important;border-radius:0!important;color:#827267!important;font-size:11px!important;box-shadow:none!important}
+ body .tabbar .tab .pi{display:grid!important;place-items:center!important;width:43px!important;height:32px!important;min-width:43px!important;min-height:32px!important;max-width:43px!important;border-radius:12px!important;background:transparent!important;transform:none!important;position:relative!important;inset:auto!important;margin:0!important;box-shadow:none!important;border:0!important}
+ body .tabbar .tab .pi .ic{display:block!important;width:21px!important;height:21px!important;max-width:21px!important;max-height:21px!important;filter:none!important}
+ body .tabbar .tab.tab-luna{overflow:visible!important;transform:none!important;top:auto!important;bottom:auto!important}
+ body .tabbar .tab.tab-luna .pi{background:transparent!important;box-shadow:none!important;border:none!important;transform:none!important;inset:auto!important}
+ body .tabbar .tab.tab-luna .pi:before,body .tabbar .tab.tab-luna .pi:after{display:none!important}
+ body .tabbar .tab.tab-luna .pi .ic{color:#845A40!important;stroke:currentColor!important}
+ body .tabbar .tab .tab-lock{position:absolute!important;top:-2px!important;right:0!important;width:13px!important;height:13px!important;background:#F4E7D4!important;border-radius:50%!important;display:grid!important;place-items:center!important}
+ body .tabbar .tab .tab-lock .ic{width:10px!important;height:10px!important;color:#725139!important}
+ body .tabbar .tab.on{color:#805033!important;font-weight:700!important}
+ body .tabbar .tab.on .pi{background:#EEE0D2!important}
+ body .tabbar .tl{font-size:11px!important;line-height:1.2!important;margin:0!important;transform:none!important;color:inherit!important}
+ body .tabbar .tab:focus-visible{outline:2px solid #94633F;outline-offset:-2px;border-radius:9px!important}
+ .foot{padding-bottom:calc(95px + env(safe-area-inset-bottom,0px))!important}
+ /* Outras telas continuam funcionais, com área útil acima do menu */
+ #v-painel,#v-bemestar,#v-diario,#v-estudos,#v-relaxamento,#v-menteia,#v-universidades,#v-apoio,#v-planos{padding:20px 18px 36px}
+}
+@media (max-width:360px){.topbar .brand b{font-size:15px!important}.topbar .mark.mu-logo-mark{width:45px!important;height:45px!important;min-width:45px!important}.mu-mobile-intro h1{font-size:35px}.mu-mini-card{padding:14px 11px}.mu-mini-card strong{font-size:13px}}
+@media (hover:hover) and (pointer:fine) and (max-width:960px){.mu-mini-card:hover{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.mu-mobile-home *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
 <div id="lunaWelcome" role="dialog" aria-modal="true" aria-labelledby="lunaHeading" aria-hidden="true">
@@ -1286,6 +1386,40 @@ input[type="text"]:focus-visible,input[type="email"]:focus-visible,textarea:focu
 
       <!-- INÍCIO -->
       <section class="view on" id="v-inicio">
+<!-- MOBILE-FIRST HOME: experiência exclusiva para telas pequenas -->
+<div class="mu-mobile-home" aria-label="Início do Mente Universitária no celular">
+  <div class="mu-mobile-intro">
+    <div class="mu-mobile-kicker"><span class="mu-kicker-dot" aria-hidden="true"></span> SEU ESPAÇO DE EQUILÍBRIO</div>
+    <h1>Um momento <em>para você.</em></h1>
+    <p>Cuide de como se sente e organize seus estudos, no seu ritmo.</p>
+  </div>
+  <section class="mu-mobile-check" aria-labelledby="mu-mobile-check-title">
+    <div class="mu-mobile-check-head">
+      <div><div class="mu-micro-label">COMECE POR AQUI <span aria-hidden="true">·</span> 1 MINUTO</div>
+      <h2 id="mu-mobile-check-title">Como está seu dia?</h2></div>
+      <span class="mu-check-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0 4.2-8.8 10.4-8.8 10.4S3.2 12.8 3.2 8.6a4.8 4.8 0 0 1 8.8-2.5 4.8 4.8 0 0 1 8.8 2.5Z"/></svg></span>
+    </div>
+    <p class="mu-check-desc">Escolha a opção que mais combina com você agora.</p>
+    <div class="mu-quick-moods" role="group" aria-label="Estado emocional atual">
+      <button type="button" class="mu-quick-mood" data-mu-quick="Bem" aria-pressed="false"><span class="mu-face"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 10h.01M15.5 10h.01" stroke-width="2.5"/><path d="M8 14c1 2 2.3 3 4 3s3-1 4-3"/></svg></span><span>Bem</span></button>
+      <button type="button" class="mu-quick-mood" data-mu-quick="Regular" aria-pressed="false"><span class="mu-face"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 10h.01M15.5 10h.01" stroke-width="2.5"/><path d="M8.5 15h7"/></svg></span><span>Regular</span></button>
+      <button type="button" class="mu-quick-mood" data-mu-quick="Difícil" aria-pressed="false"><span class="mu-face"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 10h.01M15.5 10h.01" stroke-width="2.5"/><path d="M8 17c1-2 2.3-3 4-3s3 1 4 3"/></svg></span><span>Difícil</span></button>
+    </div>
+    <a class="mu-check-cta" href="#/bemestar" id="mu-mobile-check-cta">Continuar check-in <span aria-hidden="true">↗</span></a>
+    <p class="mu-check-notice" id="mu-quick-feedback" aria-live="polite">Prévia demonstrativa. O registro é feito na próxima tela.</p>
+  </section>
+  <div class="mu-mobile-section-heading"><h2>Seu espaço</h2><span>Escolha por onde começar</span></div>
+  <div class="mu-mobile-grid">
+    <a href="#/diario" class="mu-mini-card mu-mini-olive"><span class="mu-mini-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5a2 2 0 0 1 2-2h12v18H7a2 2 0 0 0-2 2Z"/><path d="M5 4.5v16a2 2 0 0 1 2-2h12M9 8h6M9 12h5"/></svg></span><strong>Meu diário</strong><small>Expresse seu dia</small><span class="mu-mini-arrow" aria-hidden="true">↗</span></a>
+    <a href="#/estudos" class="mu-mini-card mu-mini-clay"><span class="mu-mini-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="16" rx="2"/><path d="M9 5V3m6 2V3M8 11l2 2 4-4"/></svg></span><strong>Meus estudos</strong><small>Organize seu foco</small><span class="mu-mini-arrow" aria-hidden="true">↗</span></a>
+    <a href="#/relaxamento" class="mu-mini-card mu-mini-sand"><span class="mu-mini-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 3.5c-10 0-16.5 5-16.5 12a5 5 0 0 0 5 5c7 0 12-6.5 11.5-17Z"/><path d="M5 19c4-5 8-8 13-11"/></svg></span><strong>Relaxamento</strong><small>Respire e desacelere</small><span class="mu-mini-arrow" aria-hidden="true">↗</span></a>
+    <a href="#/menteia" class="mu-mini-card mu-mini-premium"><span class="mu-mini-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><strong>Luna <span class="mu-luna-chip">PREMIUM</span></strong><small>Converse e acolha</small><span class="mu-mini-arrow" aria-hidden="true">↗</span></a>
+  </div>
+  <a class="mu-mobile-help" href="#/apoio"><span class="mu-help-mark" aria-hidden="true">♡</span><span><strong>Precisa de apoio?</strong><small>Encontre orientação e contatos de ajuda</small></span><span aria-hidden="true">↗</span></a>
+  <div class="mu-mobile-institutional"><span>PARA INSTITUIÇÕES</span><p>Sua universidade pode ampliar o acesso ao cuidado.</p><a href="#/universidades">Conheça a proposta institucional <span aria-hidden="true">→</span></a></div>
+  <p class="mu-mobile-disclaimer">Protótipo acadêmico demonstrativo. Não substitui acompanhamento profissional. <a href="tel:188">CVV 188</a>.</p>
+</div>
+
         <!-- Hero editorial Premium Beige: integrado ao aplicativo existente -->
         <section class="beige-hero" aria-labelledby="beige-title">
           <div class="beige-copy">
@@ -2546,6 +2680,17 @@ function schedule(){if(!raf)raf=requestAnimationFrame(move)}addEventListener('sc
   });
 })();
 
+</script>
+<script id="mu-mobile-first-interactions">
+(() => {
+  'use strict';
+  const choices = [...document.querySelectorAll('[data-mu-quick]')];
+  const message = document.getElementById('mu-quick-feedback');
+  choices.forEach(button => button.addEventListener('click', () => {
+    choices.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    if (message) message.textContent = `Você escolheu “${button.dataset.muQuick}”. Continue para concluir seu check-in.`;
+  }));
+})();
 </script>
 </body>
 </html>
